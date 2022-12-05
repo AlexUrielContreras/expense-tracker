@@ -4,17 +4,19 @@ const userSchema = new Schema({
    firstName: {
       type: String, 
       required: true,
+      trim: true
    },
 
    lastName: {
       type: String,
-      required: true
+      required: true,
+      trim: true
    },
 
    email: {
       type: String,
       required: true,
-      unquie: true,
+      unique: true,
       match: [/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/]
    }, 
 
@@ -25,6 +27,6 @@ const userSchema = new Schema({
    }
 });
 
-const User = model('user', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;
