@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongooes');
+const { Schema, model } = require('mongoose');
 
-const paymentSchema = new Schema({
+const PaymentSchema = new Schema({
    category: {
       type: String,
       required: true
@@ -17,6 +17,6 @@ const paymentSchema = new Schema({
    }
 });
 
-const Payment = model('Payment', paymentSchema);
+const Payment = model('Payment', PaymentSchema);
 
 module.export = Payment

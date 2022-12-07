@@ -1,6 +1,6 @@
 const mongooes = require('mongoose');
 
-mongooes.connect(process.env.MONGODB_URI || 'mongodb://localhost/expense-tracker', {
+mongooes.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/expense-tracker', {
    useNewUrlParser: true,
    useUnifiedTopology: true
 }).catch(
