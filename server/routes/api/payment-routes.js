@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { createPayment, getStatement, getSinglePayment, deletePayment } = require('../../controllers/payment-controller');
+const { createPayment, getStatement, getSinglePayment, updatePayment, deletePayment } = require('../../controllers/payment-controller');
 
 router   
    .route('/')
@@ -9,7 +9,9 @@ router
 router 
    .route('/:_id')
    .get(getSinglePayment)
+   .put(updatePayment)
    .delete(deletePayment)
+   
 
 
 module.exports = router;

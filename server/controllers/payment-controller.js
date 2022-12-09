@@ -44,6 +44,27 @@ const paymentController = {
       })
    },
 
+   // update payment info
+   updatePayment({params, body}, res) {
+      Payment.findOneAndUpdate(
+         { _id: params._id},
+         body ,
+         { new: true, runValidators: true }
+      )
+      .then(dbPaymentData => {
+         if (!dbPaymentData) {
+            res.status(404).json({ message: 'No Payment was found with this id!'});
+            return
+         }
+
+         res.json(dbPaymentData)
+      })
+      .catch(err => {
+         console.log(err);
+         res.status(500).json(err)
+      })
+   },
+
    // delete payment
    deletePayment({params}, res) {
       Payment.findOneAndDelete({

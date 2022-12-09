@@ -25,8 +25,6 @@ const userController = {
       })
    },
 
-   
-   // FOR DEVELOPMENT ONLY 
    // get single user
    getSingleUser({params}, res) {
       User.findOne({
@@ -49,6 +47,7 @@ const userController = {
 
    },
 
+   // delete user
    deleteUser({params}, res) {
       User.findByIdAndDelete({
          _id: params._id
