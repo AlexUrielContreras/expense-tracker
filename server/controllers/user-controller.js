@@ -16,8 +16,7 @@ const userController = {
    // get all users 
    getAllUsers(req, res) {
       User.find({})
-      .select('-password')
-      .select('-__v')
+      .select('-password -__v')
       .then(dbUserData => res.json(dbUserData))
       .catch(err => {
          console.log(err);
@@ -30,8 +29,7 @@ const userController = {
       User.findOne({
             _id: params._id
       })
-      .select('-password')
-      .select('-__v')
+      .select('-password -__v')
       .then(dbUserData => {
          if (!dbUserData) {
             res.status(404).json({ message: 'No Users with that id were found. Please enter a valid _id'});
