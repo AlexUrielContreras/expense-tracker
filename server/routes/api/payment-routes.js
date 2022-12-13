@@ -4,14 +4,15 @@ const { createPayment, getStatement, getSinglePayment, updatePayment, deletePaym
 router   
    .route('/')
    .get(getStatement)
-   .post(createPayment)
-
+   
 router 
    .route('/:_id')
    .get(getSinglePayment)
    .put(updatePayment)
    .delete(deletePayment)
    
-
+router
+   .route('/:userId')   
+   .post(createPayment)
 
 module.exports = router;

@@ -25,7 +25,12 @@ const UserSchema = new Schema({
       type: String,
       required: true,
       minLength: 5
-   }
+   }, 
+
+   pastPayments: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Payment'
+   }]
 },
 {
    toJSON: {

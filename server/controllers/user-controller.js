@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Payment } = require('../models');
 
 const userController = {
    // Create User 
@@ -28,6 +28,10 @@ const userController = {
    getSingleUser({params}, res) {
       User.findOne({
             _id: params._id
+      })
+      .populate({
+         path: 'pastPayments',
+         select: 'amount category'
       })
       .select('-password -__v')
       .then(dbUserData => {

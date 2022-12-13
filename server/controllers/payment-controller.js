@@ -1,12 +1,22 @@
-const { Payment } = require('../models');
+const { Payment, User } = require('../models');
 
 
 const paymentController = {
    
    // create payment 
-   createPayment({ body }, res) {
+   createPayment({ body, params }, res) {
       Payment.create(body)
+      .then(({ _id })=> {
+         return User.findOneAndUpdate(
+            { _id: params.userId},
+            { $push : {pastPayments: _id}},
+            { new: true}
+         )
+      })
       .then(dbPaymentData => {
+         if (!dbPaymentData) {
+            res.status(404).json({ message: 'No User found with that id'})
+         }
          res.json(dbPaymentData)
       })
       .catch(err => {
