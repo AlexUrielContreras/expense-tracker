@@ -12,6 +12,7 @@ const paymentController = {
             { $push : {pastPayments: _id}},
             { new: true}
          )
+         .select('-password -__v')
       })
       .then(dbPaymentData => {
          if (!dbPaymentData) {
@@ -28,6 +29,7 @@ const paymentController = {
    // lookup all payment 
    getStatement(req, res) {
       Payment.find({})
+      .select('-__v')
       .then(dbPaymentData => res.json(dbPaymentData))
       .catch(err => {
          console.log(err)
@@ -40,6 +42,7 @@ const paymentController = {
       Payment.findOne({
          _id: params._id
       })
+      .select('-__v')
       .then(dbPaymentData => {
          if (!dbPaymentData) {
             res.status(404).json({ message: 'No payment found with this id!'});

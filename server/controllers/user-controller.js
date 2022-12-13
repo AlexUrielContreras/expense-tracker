@@ -31,7 +31,7 @@ const userController = {
       })
       .populate({
          path: 'pastPayments',
-         select: 'amount category'
+         select: '-_id category amount'
       })
       .select('-password -__v')
       .then(dbUserData => {
