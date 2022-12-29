@@ -2,10 +2,25 @@ const { User, Payment } = require('../models');
 
 const userController = {
    // Create User 
-   createUser({body}, res) {
+   createUser({body, session}, res) {
       User.create(body)
       .then(dbUserData => {
-         res.json(dbUserData);
+   
+         session.save((err) => {
+            if (err) {
+               res.status(500).json(err)
+            };
+            
+            session.userId = dbUserData._id
+            session.firstName = dbUserData.firstName,
+            session.lastName = dbUserData.firstName
+            session.isLoggedIn = true
+
+            res.json(dbUserData);
+
+            console.log(session)
+         })
+
       }).catch(err => {
          console.log(err);
          res.status(400).json(err)
@@ -69,6 +84,7 @@ const userController = {
    }
 
 }
+
 
 
 module.exports = userController;

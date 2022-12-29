@@ -1,8 +1,9 @@
 const express = require('express');
-const db = require('./config/connection.js');
 const session = require('express-session');
 
 require('dotenv').config();
+
+const db = require('./config/connection.js');
 
 const app = express();
 
@@ -19,7 +20,7 @@ const sess = {
    resave: false,
    saveUninitialized: true,
    cookie: {
-      maxAge: new Date(Date.now() + 7200000), // 2 hours
+      maxAge: 7200000, // 2 hours
       secure: true
    },
    store: MongoStore.create({
