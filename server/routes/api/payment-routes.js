@@ -6,13 +6,19 @@ router
    .get(getStatement)
    
 router 
-   .route('/:_id')
+   .route('/:paymentId')
    .get(getSinglePayment)
    .put(updatePayment)
-   .delete(deletePayment)
    
 router
    .route('/:userId')   
    .post(createPayment)
+
+router
+   .route('/:userId/:paymentId')
+   .delete(deletePayment)
+
+
+
 
 module.exports = router;

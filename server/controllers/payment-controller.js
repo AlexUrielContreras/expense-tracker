@@ -40,7 +40,7 @@ const paymentController = {
    // lookup one payment 
    getSinglePayment({params}, res) {
       Payment.findOne({
-         _id: params._id
+         _id: params.paymentId
       })
       .select('-__v')
       .then(dbPaymentData => {
@@ -60,7 +60,7 @@ const paymentController = {
    // update payment info
    updatePayment({params, body}, res) {
       Payment.findOneAndUpdate(
-         { _id: params._id},
+         { _id: params.paymentId},
          body ,
          { new: true, runValidators: true }
       )
@@ -81,7 +81,14 @@ const paymentController = {
    // delete payment
    deletePayment({params}, res) {
       Payment.findOneAndDelete({
-         _id: params._id
+         _id: params.paymentId
+      })
+      .then(() => {
+         return User.findOneAndUpdate(
+            { _id: params.userId},
+            { $pull: {pastPayments: params.paymentId}},
+            { new: true }
+         )
       })
       .then(dbPaymentData => {
          if (!dbPaymentData) {
