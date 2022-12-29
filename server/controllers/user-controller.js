@@ -13,7 +13,7 @@ const userController = {
             
             session.userId = dbUserData._id
             session.firstName = dbUserData.firstName,
-            session.lastName = dbUserData.firstName
+            session.lastName = dbUserData.lastName
             session.isLoggedIn = true
 
             res.json(dbUserData);
