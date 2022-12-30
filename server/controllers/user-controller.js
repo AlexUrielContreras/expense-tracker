@@ -66,8 +66,18 @@ const userController = {
 
    // delete user
    deleteUser({params}, res) {
-      User.findByIdAndDelete({
+      User.findOne({
          _id: params._id
+      })
+      .then(({ pastPayments}) => {
+         return Payment.deleteMany({
+            _id: pastPayments
+         })
+      })
+      .then(() => {
+         return User.findByIdAndDelete({
+            _id: params._id
+         })
       })
       .then(dbUserData => {
          if (!dbUserData) {
