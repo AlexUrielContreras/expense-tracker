@@ -56,7 +56,11 @@ UserSchema.pre('save', async function(next) {
    }
 
    next();
-})
+});
+
+UserSchema.methods.checkPassword = function(plainTextPassword) {
+   return bcrypt.compareSync(plainTextPassword, this.password)
+};
 
 const User = model('User', UserSchema);
 

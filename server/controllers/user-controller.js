@@ -91,6 +91,41 @@ const userController = {
          console.log(err);
          res.status(500).json(err)
       })
+   },
+
+   // Login 
+   login({body, session}, res) {
+      User.findOne({
+         email: body.email
+      })
+      .then(dbUserData => {
+         if (!dbUserData) {
+            res.status(404).json({ message: 'Could not find user. Please try again'})
+            return
+         }
+         const isPasswordValid = dbUserData.checkPassword(body.password)
+
+         if (!isPasswordValid) {
+            res.status(404).json({ message: 'Incorrect Email or Password. Please try again'});
+            return
+         }
+
+
+         session.save((err) => {
+            if (err) {
+               res.status(500).json(err);
+            }
+
+            session.userId = dbUserData._id;
+            session.firstName = dbUserData.firstName;
+            session.lastName = dbUserData.lastName;
+            session.isLoggedIn = true
+
+         
+            res.json({ dbUserData,  message: 'You are now logged in !!!'})
+
+         })
+      })
    }
 
 }
