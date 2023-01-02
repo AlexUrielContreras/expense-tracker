@@ -106,7 +106,7 @@ const userController = {
          const isPasswordValid = dbUserData.checkPassword(body.password)
 
          if (!isPasswordValid) {
-            res.status(404).json({ message: 'Incorrect Email or Password. Please try again'});
+            res.status(400).json({ message: 'Incorrect Email or Password. Please try again'});
             return
          }
 
@@ -122,7 +122,7 @@ const userController = {
             session.isLoggedIn = true
 
          
-            res.json({ dbUserData,  message: 'You are now logged in !!!'})
+            res.json({ user: dbUserData,  message: 'You are now logged in !!!'})
 
          })
       })
