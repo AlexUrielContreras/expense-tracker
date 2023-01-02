@@ -99,17 +99,41 @@ const userController = {
          email: body.email
       })
       .then(dbUserData => {
+
          if (!dbUserData) {
             res.status(404).json({ message: 'Could not find user. Please try again'})
             return
          }
-         const isPasswordValid = dbUserData.checkPassword(body.password)
 
-         if (!isPasswordValid) {
-            res.status(400).json({ message: 'Incorrect Email or Password. Please try again'});
+         if (dbUserData.failedLoginAttempts === 5 ) {
+            res.status(500).json({ message: 'To Many Login attempts please try again later'});
+
+            console.log(dbUserData.failedLoginAttemptsDate.getMinutes() + 2)
+            console.log(new Date(Date.now()).getMinutes())
+
+            if (dbUserData.failedLoginAttemptsDate.getMinutes() + 2  < new Date(Date.now()).getMinutes()) {
+               return User.findByIdAndUpdate(
+                  { _id: dbUserData._id },
+                  { $set: { failedLoginAttempts: 0 }},
+                  { new: true }
+               )
+            }
+
             return
          }
 
+         const isPasswordValid = dbUserData.checkPassword(body.password)
+
+         if (!isPasswordValid) {
+
+            res.status(400).json({ message: 'Incorrect Email or Password. Please try again'});
+            return User.findByIdAndUpdate(
+               { _id: dbUserData._id},
+               { $inc: { failedLoginAttempts: 1 },
+                $set: { failedLoginAttemptsDate: Date.now() }},
+               { new: true}
+            )
+         }
 
          session.save((err) => {
             if (err) {
@@ -123,6 +147,12 @@ const userController = {
 
          
             res.json({ user: dbUserData,  message: 'You are now logged in !!!'})
+
+            return User.findByIdAndUpdate(
+               { _id: dbUserData._id},
+               { $set: { failedLoginAttempts: 0 }},
+               { new: true}
+            )
 
          })
       })

@@ -33,13 +33,8 @@ const UserSchema = new Schema({
    }],
 
    failedLoginAttempts: {
-      type: Number,
+      type: Number, 
       default: 0
-   },
-
-   failedLoginAttemptsDate: {
-      type: Date,
-      default: Date.now()
    }
 },
 {
