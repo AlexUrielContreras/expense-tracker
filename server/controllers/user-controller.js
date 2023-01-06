@@ -108,27 +108,6 @@ const userController = {
 
          if (!isPasswordValid) {
 
-            // if (dbUserData.failedLoginAttempts === 5 && dbUserData.failedLoginAttemptsDate.getMinutes() + 1 >= new Date(Date.now()).getMinutes()) {
-            //    session.save((err) => {
-            //       if (err) {
-            //          res.status(500).json(err);
-            //       }
-   
-            //       session.userId = dbUserData._id;
-            //       session.firstName = dbUserData.firstName;
-            //       session.lastName = dbUserData.lastName;
-            //       session.isLoggedIn = true;
-   
-            //       res.json({ user: dbUserData,  message: 'You are now logged in !!!'});
-   
-            //       return User.findByIdAndUpdate(
-            //          { _id: dbUserData._id},
-            //          { $set: { failedLoginAttempts: 0 }},
-            //          { new: true}
-            //       );
-            //    });
-            // }
-
             if (dbUserData.failedLoginAttempts === 5) {
                res.status(400).json({ message: 'To many login attempts. Please try again later'});
 
@@ -146,12 +125,11 @@ const userController = {
          } else {
 
             if (dbUserData.failedLoginAttempts === 5) {
-               console.log(dbUserData.failedLoginAttemptsDate.getMinutes() + 1)
-               console.log(new Date(Date.now()).getMinutes())
+               const lastFailedLogin = dbUserData.failedLoginAttemptsDate.getMinutes() 
+               const currentTime = new Date(Date.now()).getMinutes()
 
-               if (dbUserData.failedLoginAttemptsDate.getMinutes() < new Date(Date.now()).getMinutes()) {
-
-                  console.log('is this being ran');
+               if (lastFailedLogin + 9 < currentTime) {
+         
                   session.save((err) => {
                      if (err) {
                         res.status(500).json(err);
@@ -197,54 +175,6 @@ const userController = {
             });
 
          }
-
-         // if (dbUserData.failedLoginAttempts === 5 && !isPasswordValid ) {
-         //    res.status(500).json({ message: 'To Many Login attempts. Please try again later'});
-
-         //    if (dbUserData.failedLoginAttemptsDate.getMinutes() + 1 < new Date(Date.now()).getMinutes()) {
-         //       return User.findByIdAndUpdate(
-         //          { _id: dbUserData._id },
-         //          { $set: { failedLoginAttempts: 0 }},
-         //          { new: true }
-         //       )
-         //    }
-
-         //    return
-         // };
-
-         
-         // if (!isPasswordValid) {
-         //    res.status(400).json({ message: 'Incorrect Email or Password. Please try again'});
-
-         //    return User.findByIdAndUpdate(
-         //       { _id: dbUserData._id},
-         //       { 
-         //          $inc: { failedLoginAttempts: 1 },
-         //          $set: { failedLoginAttemptsDate: Date.now() }
-         //       },
-         //       { new: true}
-         //    )
-         // };
-
-         // session.save((err) => {
-         //    if (err) {
-         //       res.status(500).json(err);
-         //    }
-
-         //    session.userId = dbUserData._id;
-         //    session.firstName = dbUserData.firstName;
-         //    session.lastName = dbUserData.lastName;
-         //    session.isLoggedIn = true;
-
-         //    res.json({ user: dbUserData,  message: 'You are now logged in !!!'});
-
-         //    return User.findByIdAndUpdate(
-         //       { _id: dbUserData._id},
-         //       { $set: { failedLoginAttempts: 0 }},
-         //       { new: true}
-         //    );
-         // });
-
       })
    }
 }
