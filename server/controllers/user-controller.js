@@ -104,18 +104,16 @@ const userController = {
             return
          };
 
-         const {failedLoginAttempts, failedLoginAttemptsDate } = dbUserData;
+         const {failedLoginAttempts, failedLoginAttemptsDate} = dbUserData;
+         const elapsedTime = new Date(Date.now()) - failedLoginAttemptsDate
 
          const isPasswordValid = dbUserData.checkPassword(body.password);
-
-         const lastFailedLoginDate = failedLoginAttemptsDate.getMinutes(); 
-         const currentTime = new Date(Date.now()).getMinutes();
 
          if (!isPasswordValid) {
 
             if (failedLoginAttempts !== 0 && failedLoginAttempts % 5 === 0) {
 
-               if (lastFailedLoginDate + 10 <= currentTime) {
+               if (elapsedTime >= 600000) {
                   res.status(400).json({ message: 'Incorrect Email or Password. Please try again'});
 
                   return User.findByIdAndUpdate(
@@ -136,11 +134,11 @@ const userController = {
                { $inc: { failedLoginAttempts: 1} , $set: { failedLoginAttemptsDate: Date.now() }},
                { new: true}
             )
-
          } else {
 
             if (failedLoginAttempts % 5 === 0 && failedLoginAttempts !== 0) {
-               if (lastFailedLoginDate + 10 <= currentTime) {
+
+               if (elapsedTime >= 600000) {
 
                   session.save((err) => {
                      if (err) {
@@ -185,9 +183,8 @@ const userController = {
                   { new: true}
                );
             });
-
-         }
-      })
+         };
+      });
    }
 }
 
