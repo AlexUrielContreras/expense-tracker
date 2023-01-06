@@ -68,7 +68,7 @@ const userController = {
       User.findOne({
          _id: params._id
       })
-      .then(({ pastPayments}) => {
+      .then(({ pastPayments }) => {
          return Payment.deleteMany({
             _id: pastPayments
          })
@@ -104,53 +104,146 @@ const userController = {
             return
          };
 
-         if (dbUserData.failedLoginAttempts === 5 ) {
-            res.status(500).json({ message: 'To Many Login attempts. Please try again later'});
-
-            if (dbUserData.failedLoginAttemptsDate.getMinutes() + 1 < new Date(Date.now()).getMinutes()) {
-               return User.findByIdAndUpdate(
-                  { _id: dbUserData._id },
-                  { $set: { failedLoginAttempts: 0 }},
-                  { new: true }
-               )
-            }
-
-            return
-         };
-
          const isPasswordValid = dbUserData.checkPassword(body.password);
 
          if (!isPasswordValid) {
-            res.status(400).json({ message: 'Incorrect Email or Password. Please try again'});
 
-            return User.findByIdAndUpdate(
-               { _id: dbUserData._id},
-               { 
-                  $inc: { failedLoginAttempts: 1 },
-                  $set: { failedLoginAttemptsDate: Date.now() }
-               },
-               { new: true}
-            )
-         };
+            // if (dbUserData.failedLoginAttempts === 5 && dbUserData.failedLoginAttemptsDate.getMinutes() + 1 >= new Date(Date.now()).getMinutes()) {
+            //    session.save((err) => {
+            //       if (err) {
+            //          res.status(500).json(err);
+            //       }
+   
+            //       session.userId = dbUserData._id;
+            //       session.firstName = dbUserData.firstName;
+            //       session.lastName = dbUserData.lastName;
+            //       session.isLoggedIn = true;
+   
+            //       res.json({ user: dbUserData,  message: 'You are now logged in !!!'});
+   
+            //       return User.findByIdAndUpdate(
+            //          { _id: dbUserData._id},
+            //          { $set: { failedLoginAttempts: 0 }},
+            //          { new: true}
+            //       );
+            //    });
+            // }
 
-         session.save((err) => {
-            if (err) {
-               res.status(500).json(err);
+            if (dbUserData.failedLoginAttempts === 5) {
+               res.status(400).json({ message: 'To many login attempts. Please try again later'});
+
+               return;
             }
 
-            session.userId = dbUserData._id;
-            session.firstName = dbUserData.firstName;
-            session.lastName = dbUserData.lastName;
-            session.isLoggedIn = true;
-
-            res.json({ user: dbUserData,  message: 'You are now logged in !!!'});
+            res.status(400).json({ message: 'Incorrect Email or Password. Please try again'})
 
             return User.findByIdAndUpdate(
                { _id: dbUserData._id},
-               { $set: { failedLoginAttempts: 0 }},
+               { $inc: { failedLoginAttempts: 1} , $set: { failedLoginAttemptsDate: Date.now() }},
                { new: true}
-            );
-         });
+            )
+
+         } else {
+
+            if (dbUserData.failedLoginAttempts === 5) {
+               console.log(dbUserData.failedLoginAttemptsDate.getMinutes() + 1)
+               console.log(new Date(Date.now()).getMinutes())
+
+               if (dbUserData.failedLoginAttemptsDate.getMinutes() < new Date(Date.now()).getMinutes()) {
+
+                  console.log('is this being ran');
+                  session.save((err) => {
+                     if (err) {
+                        res.status(500).json(err);
+                     }
+      
+                     session.userId = dbUserData._id;
+                     session.firstName = dbUserData.firstName;
+                     session.lastName = dbUserData.lastName;
+                     session.isLoggedIn = true;
+      
+                     res.json({ user: dbUserData,  message: 'You are now logged in !!!'});
+      
+                  });   
+
+                  return User.findByIdAndUpdate(
+                     { _id: dbUserData._id},
+                     { $set: { failedLoginAttempts: 0 }},
+                     { new: true}
+                  );
+               }
+
+               res.status(400).json({ message: 'To many login attempts. Please try again later'})
+               return;
+            } 
+
+            session.save((err) => {
+               if (err) {
+                  res.status(500).json(err);
+               }
+
+               session.userId = dbUserData._id;
+               session.firstName = dbUserData.firstName;
+               session.lastName = dbUserData.lastName;
+               session.isLoggedIn = true;
+
+               res.json({ user: dbUserData,  message: 'You are now logged in !!!'});
+
+               return User.findByIdAndUpdate(
+                  { _id: dbUserData._id},
+                  { $set: { failedLoginAttempts: 0 }},
+                  { new: true}
+               );
+            });
+
+         }
+
+         // if (dbUserData.failedLoginAttempts === 5 && !isPasswordValid ) {
+         //    res.status(500).json({ message: 'To Many Login attempts. Please try again later'});
+
+         //    if (dbUserData.failedLoginAttemptsDate.getMinutes() + 1 < new Date(Date.now()).getMinutes()) {
+         //       return User.findByIdAndUpdate(
+         //          { _id: dbUserData._id },
+         //          { $set: { failedLoginAttempts: 0 }},
+         //          { new: true }
+         //       )
+         //    }
+
+         //    return
+         // };
+
+         
+         // if (!isPasswordValid) {
+         //    res.status(400).json({ message: 'Incorrect Email or Password. Please try again'});
+
+         //    return User.findByIdAndUpdate(
+         //       { _id: dbUserData._id},
+         //       { 
+         //          $inc: { failedLoginAttempts: 1 },
+         //          $set: { failedLoginAttemptsDate: Date.now() }
+         //       },
+         //       { new: true}
+         //    )
+         // };
+
+         // session.save((err) => {
+         //    if (err) {
+         //       res.status(500).json(err);
+         //    }
+
+         //    session.userId = dbUserData._id;
+         //    session.firstName = dbUserData.firstName;
+         //    session.lastName = dbUserData.lastName;
+         //    session.isLoggedIn = true;
+
+         //    res.json({ user: dbUserData,  message: 'You are now logged in !!!'});
+
+         //    return User.findByIdAndUpdate(
+         //       { _id: dbUserData._id},
+         //       { $set: { failedLoginAttempts: 0 }},
+         //       { new: true}
+         //    );
+         // });
 
       })
    }
