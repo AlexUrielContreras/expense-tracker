@@ -104,17 +104,32 @@ const userController = {
             return
          };
 
+         const {failedLoginAttempts, failedLoginAttemptsDate } = dbUserData;
+
          const isPasswordValid = dbUserData.checkPassword(body.password);
+
+         const lastFailedLoginDate = failedLoginAttemptsDate.getMinutes(); 
+         const currentTime = new Date(Date.now()).getMinutes();
 
          if (!isPasswordValid) {
 
-            if (dbUserData.failedLoginAttempts === 5) {
-               res.status(400).json({ message: 'To many login attempts. Please try again later'});
+            if (failedLoginAttempts !== 0 && failedLoginAttempts % 5 === 0) {
 
-               return;
+               if (lastFailedLoginDate + 10 <= currentTime) {
+                  res.status(400).json({ message: 'Incorrect Email or Password. Please try again'});
+
+                  return User.findByIdAndUpdate(
+                     { _id: dbUserData._id},
+                     { $inc: { failedLoginAttempts: 1} , $set: { failedLoginAttemptsDate: Date.now() }},
+                     { new: true}
+                     );
+                  }
+                  
+                  res.status(400).json({ message: 'To many login attempts. Please try again later'});
+                  return;
             }
 
-            res.status(400).json({ message: 'Incorrect Email or Password. Please try again'})
+            res.status(400).json({ message: 'Incorrect Email or Password. Please try again'});
 
             return User.findByIdAndUpdate(
                { _id: dbUserData._id},
@@ -124,12 +139,9 @@ const userController = {
 
          } else {
 
-            if (dbUserData.failedLoginAttempts === 5) {
-               const lastFailedLogin = dbUserData.failedLoginAttemptsDate.getMinutes() 
-               const currentTime = new Date(Date.now()).getMinutes()
+            if (failedLoginAttempts % 5 === 0 && failedLoginAttempts !== 0) {
+               if (lastFailedLoginDate + 10 <= currentTime) {
 
-               if (lastFailedLogin + 9 < currentTime) {
-         
                   session.save((err) => {
                      if (err) {
                         res.status(500).json(err);
