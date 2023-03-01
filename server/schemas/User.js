@@ -28,6 +28,11 @@ const userSchema = new Schema({
       trim: true
    },
 
+   payments: {
+      type: mongoose.ObjectID,
+      ref: 'Payment'
+   },
+
    /*       5 Failed login attempts will lock the user out          */
 
    loginAttempts: {

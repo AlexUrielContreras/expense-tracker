@@ -21,3 +21,5 @@ const paymentSchema = new Schema({
 });
 
 const Payment = model('Payment', paymentSchema);
+
+module.exports = Payment
