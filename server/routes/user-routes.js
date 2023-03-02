@@ -12,4 +12,8 @@ router
    .get(findUserById)
    .delete(deleteUser)
 
+router 
+   .route('/login')
+   .post(login)
+
 module.exports = router;

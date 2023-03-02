@@ -1,9 +1,37 @@
 const { User, Payment }  = require('../schemas/index');
+const { signToken } = require('../utills/auth');
 
 const userController = {
    
-   login(req, res) {
-      // login code
+   login({ body }, res) {
+      User.findOne({ email: body.email})
+      .then(async dbUserData => {
+         if (!dbUserData) {
+            res.status(404).json({ message: 'Incorrect Credentials' });
+            return
+         };
+
+         const isPwValid = await dbUserData.checkPassword(body.password);
+
+         if (!isPwValid) {
+            res.status(400).json({ message: 'Incorrect Credentials' });
+            return
+         }
+
+         const payload = {
+            id: dbUserData._id,
+            firstName: dbUserData.firstName,
+            email: dbUserData.email
+         }
+
+         const token = signToken(payload)
+
+         res.json({user: dbUserData, token, message: 'You are now logged in!'})
+      })
+      .catch(err => {
+         console.log(err);
+         res.status(500).json(err)
+      })
    },
 
    createUser({ body }, res) {

@@ -61,9 +61,9 @@ userSchema.pre('save' , async function() {
    }
 })
 
-userSchema.virtual('checkPassword').get(async function(userPw) {
+userSchema.methods.checkPassword = async function(userPw) {
    return await bcrypt.compare(userPw, this.password);
-})
+}
 
 const User = model('User', userSchema);
 
