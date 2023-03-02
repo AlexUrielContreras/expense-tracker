@@ -28,7 +28,7 @@ const userController = {
       })
    },
 
-   findUserbyId({ params }, res) {
+   findUserById({ params }, res) {
       User.findById({
          _id: params._id
       })
