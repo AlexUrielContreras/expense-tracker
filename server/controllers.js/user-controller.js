@@ -19,13 +19,13 @@ const userController = {
 
    findAllUsers(req, res) {
       User.find()
-      .then(dbUserData => {
-         res.json(dbUserData)
-      })
-      .catch(err => {
-         console.log(err)
-         res.status(500)
-      })
+         .then(dbUserData => {
+            res.json(dbUserData)
+         })
+         .catch(err => {
+            console.log(err)
+            res.status(500)
+         })
    },
 
    findUserById({ params }, res) {
@@ -56,7 +56,7 @@ const userController = {
             return
          }
 
-         res.status(200).json({ message: 'User has been deleted '})
+         res.json({ message: 'User has been deleted '})
       }) 
       .catch(err => {
          console.log(err);
