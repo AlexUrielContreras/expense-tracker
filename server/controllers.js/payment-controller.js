@@ -25,7 +25,7 @@ const paymentController = {
       })
    },
 
-   findById({params} , res) {
+   findPaymentById({params} , res) {
       Payment.findById({ _id: params.paymentId })
       .then(dbPaymentData => {
          if (!dbPaymentData) {

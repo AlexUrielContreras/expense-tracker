@@ -9,7 +9,7 @@ router
    .post(createUser)
 
 router 
-   .route('/u/dashboard/:userId')
+   .route('/dashboard/:userId')
    .get(findUserById)
    .delete(deleteUser)
 
