@@ -1,4 +1,4 @@
-const User = require('../schemas/index');
+const { User, Payment }  = require('../schemas/index');
 
 const userController = {
    
@@ -30,7 +30,7 @@ const userController = {
 
    findUserById({ params }, res) {
       User.findById({
-         _id: params._id
+         _id: params.userId
       })
       .then(dbUserData => {
          if (!dbUserData) {
@@ -48,7 +48,12 @@ const userController = {
 
    deleteUser({ params }, res) {
       User.findByIdAndDelete({
-         _id: params._id
+         _id: params.userId
+      })
+      .then(({payments}) => {
+         return Payment.deleteMany({
+            _id: payments
+         })
       })
       .then(dbUserData => {
          if (!dbUserData) {

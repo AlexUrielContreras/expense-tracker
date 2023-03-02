@@ -7,7 +7,7 @@ const paymentController = {
       .then(({ _id }) => {
          return User.findByIdAndUpdate(
             { _id: params.userId },
-            { $push : {paymets: _id }},
+            { $push : {payments: _id }},
             { new: true}
          )
          .then(dbUserData => {

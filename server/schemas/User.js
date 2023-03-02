@@ -1,4 +1,4 @@
-const { Schema, model, ObjectID } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema({
    
@@ -28,10 +28,10 @@ const userSchema = new Schema({
       trim: true
    },
 
-   payments: {
+   payments: [{
       type: Schema.Types.ObjectId,
       ref: 'Payment'
-   },
+   }],
 
    /*       5 Failed login attempts will lock the user out          */
 

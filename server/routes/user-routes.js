@@ -5,7 +5,6 @@ const { login, createUser, findAllUsers, findUserById, deleteUser } = require('.
 router 
    .route('/')
    .get(findAllUsers)
-   .post(login)
    .post(createUser)
 
 router 

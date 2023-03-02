@@ -5,11 +5,17 @@ const { createPayment, findPaymentById, findAllPayments, deletePayments } = requ
 router 
    .route('/')
    .get(findAllPayments)
+
+router
+   .route('/dashboard/:userId')
    .post(createPayment)
+
+router
+   .route('/:paymentId/:userId')
+   .delete(deletePayments)
 
 router
    .route('/:paymentId')
    .get(findPaymentById)
-   .delete(deletePayments)
 
 module.exports = router;
