@@ -27,6 +27,7 @@ const paymentController = {
 
    findPaymentById({params} , res) {
       Payment.findById({ _id: params.paymentId })
+      .select('-__v')
       .then(dbPaymentData => {
          if (!dbPaymentData) {
             res.status(404).json({ message: 'No User found with that Id '});
@@ -43,6 +44,7 @@ const paymentController = {
 
    findAllPayments(req, res) {
       Payment.find()
+      .select('-__v')
       .then(dbPaymentData => {
          res.json(dbPaymentData)
       })
