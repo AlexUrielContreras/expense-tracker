@@ -46,13 +46,23 @@ const userSchema = new Schema({
       default: Date.now()
    }
 
-});
+}, 
+{
+   toJSON: {
+      virtuals: true
+   }
+}
+);
 
 userSchema.pre('save' , async function() {
    if (this.isNew || this.isModified('password')) {
       const saltRounds = 10;
       this.password = await bcrypt.hash(this.password, saltRounds)
    }
+})
+
+userSchema.virtual('checkPassword').get(async function(userPw) {
+   return await bcrypt.compare(userPw, this.password);
 })
 
 const User = model('User', userSchema);
