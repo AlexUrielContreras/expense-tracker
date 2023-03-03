@@ -66,6 +66,16 @@ userSchema.methods.checkPassword = async function(userPw) {
    return await bcrypt.compare(userPw, this.password);
 }
 
+userSchema.methods.failedLogin = async function() {
+   return await model('User').findByIdAndUpdate(
+      { _id: this._id},
+      { 
+         $inc: { loginAttempts: 1 },
+         $set: { lastLoginAttempt: Date.now() }
+      }
+   )
+}
+
 const User = model('User', userSchema);
 
 module.exports = User;

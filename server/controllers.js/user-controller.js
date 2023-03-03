@@ -10,23 +10,35 @@ const userController = {
             res.status(404).json({ message: 'Incorrect Credentials' });
             return
          };
-
          const isPwValid = await dbUserData.checkPassword(body.password);
+         const { loginAttempts, lastLoginAttempt } = dbUserData;
+
+         const currentTime = new Date(Date.now()).getMinutes();
 
          if (!isPwValid) {
-            res.status(400).json({ message: 'Incorrect Credentials' });
-            return
+
+            if (loginAttempts === 0 || loginAttempts % 5 !== 0) {
+               // increase loginAttempts +1
+               await dbUserData.failedLogin()
+               return res.status(400).json({ message: 'Incorrect Credentials' });
+            }
+            
+            res.status(400).json({ message: 'To many login attempts. Try again later'});
+
+
+         } else {
+
+            const payload = {
+               id: dbUserData._id,
+               firstName: dbUserData.firstName,
+               email: dbUserData.email
+            }
+   
+            const token = signToken(payload)
+   
+            res.json({user: dbUserData, token, message: 'You are now logged in!'})
          }
 
-         const payload = {
-            id: dbUserData._id,
-            firstName: dbUserData.firstName,
-            email: dbUserData.email
-         }
-
-         const token = signToken(payload)
-
-         res.json({user: dbUserData, token, message: 'You are now logged in!'})
       })
       .catch(err => {
          console.log(err);
