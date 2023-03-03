@@ -14,7 +14,7 @@ const paymentSchema = new Schema({
       required: true
    },
 
-   paymentData: {
+   paymentDate: {
       type: Date,
       default: Date.now()
    }

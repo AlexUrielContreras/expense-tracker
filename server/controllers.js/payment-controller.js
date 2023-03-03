@@ -2,11 +2,11 @@ const { Payment, User } = require('../schemas/index');
 
 const paymentController = {
 
-   createPayment({ body, params }, res) {
+   createPayment({ body, user }, res) {
       Payment.create(body)
       .then(({ _id }) => {
          return User.findByIdAndUpdate(
-            { _id: params.userId },
+            { _id: user.id },
             { $push : {payments: _id }},
             { new: true}
          )
@@ -54,11 +54,31 @@ const paymentController = {
       })
    },
 
-   deletePayments({ params }, res) {
+   updatePayment({ params, body }, res) {
+      Payment.findByIdAndUpdate(
+         { _id: params.paymentId },
+         body,
+         { new: true }
+         )
+      .then(dbPaymentData => {
+         if (!dbPaymentData) {
+            res.status(404).json({ message: 'No Payment Found' });
+            return
+         }
+
+         res.json({ dbPaymentData, message: 'Payment has been updated'})
+      })
+      .catch(err => {
+         console.log(err)
+         res.status(500).json(err)
+      })
+   },
+
+   deletePayments({ params, user }, res) {
       Payment.findByIdAndDelete({ _id: params.paymentId})
       .then(({ _id }) => {
          return User.findByIdAndUpdate(
-            { _id: params.userId },
+            { _id: user.id },
             { $pull: {payments: _id }},
             { new: true}
          )

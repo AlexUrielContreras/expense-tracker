@@ -55,7 +55,7 @@ const userController = {
 
    findAllUsers(req, res) {
       User.find()
-         .select('-__v')
+         .select('-__v -password')
          .then(dbUserData => {
             res.json(dbUserData)
          })
@@ -69,7 +69,8 @@ const userController = {
       User.findById({
          _id: user.id
       })
-      .select('-__v')
+      .select('-__v -password')
+      .populate('payments', '-__v')
       .then(dbUserData => {
          if (!dbUserData) {
             res.status(404).json({ message: 'No user with found with that Id'});

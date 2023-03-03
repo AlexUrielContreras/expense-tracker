@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { createPayment, findPaymentById, findAllPayments, deletePayments } = require('../controllers.js/payment-controller');
+const { createPayment, findPaymentById, findAllPayments, updatePayment, deletePayments } = require('../controllers.js/payment-controller');
 const { authenticateToken } = require('../utills/auth');
 
 router 
@@ -18,5 +18,6 @@ router
 router
    .route('/:paymentId')
    .get(findPaymentById)
+   .put(updatePayment)
 
 module.exports = router;
