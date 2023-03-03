@@ -37,7 +37,15 @@ const userController = {
    createUser({ body }, res) {
       User.create(body)
       .then(dbUserData => {
-         res.json(dbUserData)
+         const payload = {
+            id: dbUserData._id,
+            firstName: dbUserData.firstName,
+            email: dbUserData.email
+         }
+
+         const token = signToken(payload);
+
+         res.json({ user: dbUserData, token})
       })
       .catch(err => {
          console.log(err);
@@ -57,9 +65,9 @@ const userController = {
          })
    },
 
-   findUserById({ params }, res) {
+   findUserById({ user }, res) {
       User.findById({
-         _id: params.userId
+         _id: user.id
       })
       .select('-__v')
       .then(dbUserData => {
@@ -76,9 +84,9 @@ const userController = {
       })
    },
 
-   deleteUser({ params }, res) {
+   deleteUser({ user }, res) {
       User.findByIdAndDelete({
-         _id: params.userId
+         _id: user.id
       })
       .then(({payments}) => {
          return Payment.deleteMany({
@@ -91,7 +99,7 @@ const userController = {
             return
          }
 
-         res.json({ message: 'User has been deleted '})
+         res.json({ message: 'User and associated Payments have been deleted '})
       }) 
       .catch(err => {
          console.log(err);

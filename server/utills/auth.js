@@ -9,10 +9,10 @@ function signToken(content) {
 };
 
 function authenticateToken(req, res, next) {
-   const authHeader = req.header['authorization'];
+   const authHeader = req.headers['authorization'];
 
    // remove Bearer from token 
-   const token = authHeader && authHeader.spit(' ').pop().trim();
+   const token = authHeader && authHeader.split(' ').pop().trim();
 
    if (token === null) {
       return res.status(401);
@@ -25,7 +25,7 @@ function authenticateToken(req, res, next) {
 
       req.user = user;
 
-      next()
+      next();
    })
 };
 

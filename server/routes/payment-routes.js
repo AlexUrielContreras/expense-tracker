@@ -1,18 +1,19 @@
 const router = require('express').Router();
 
 const { createPayment, findPaymentById, findAllPayments, deletePayments } = require('../controllers.js/payment-controller');
+const { authenticateToken } = require('../utills/auth');
 
 router 
    .route('/')
    .get(findAllPayments)
 
 router
-   .route('/dashboard/:userId')
-   .post(createPayment)
+   .route('/dashboard')
+   .post(authenticateToken, createPayment)
 
 router
-   .route('/:paymentId/:userId')
-   .delete(deletePayments)
+   .route('/:paymentId')
+   .delete(authenticateToken, deletePayments)
 
 router
    .route('/:paymentId')
