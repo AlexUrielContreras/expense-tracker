@@ -30,7 +30,7 @@ const paymentController = {
       .select('-__v')
       .then(dbPaymentData => {
          if (!dbPaymentData) {
-            res.status(404).json({ message: 'No User found with that Id '});
+            res.status(404).json({ message: 'No Payment Found '});
             return
          }
 

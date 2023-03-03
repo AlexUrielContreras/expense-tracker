@@ -73,7 +73,7 @@ const userController = {
       .populate('payments', '-__v')
       .then(dbUserData => {
          if (!dbUserData) {
-            res.status(404).json({ message: 'No user with found with that Id'});
+            res.status(404).json({ message: 'No User Found'});
             return
          }
 
