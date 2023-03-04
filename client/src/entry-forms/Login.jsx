@@ -6,14 +6,14 @@ function Login() {
    };
 
    return (
-      <form onSubmit={handleLogin}>
-         <div>
-            <label htmlfor='email'>Email</label>
+      <form onSubmit={handleLogin} className='form-container'>
+         <div className='form-inputs-container'>
+            <label htmlFor='email'>Email</label>
             <input type='email' name='email' id='email' />
          </div>
 
-         <div>
-            <label htmlfor='password'>Password</label>
+         <div className='form-inputs-container'>
+            <label htmlFor='password'>Password</label>
             <input type='password' name='password' id='password' />
          </div>
 
