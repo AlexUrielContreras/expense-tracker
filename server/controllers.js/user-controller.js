@@ -10,35 +10,45 @@ const userController = {
             res.status(404).json({ message: 'Incorrect Credentials' });
             return
          };
+
          const isPwValid = await dbUserData.checkPassword(body.password);
          const { loginAttempts, lastLoginAttempt } = dbUserData;
 
-         const currentTime = new Date(Date.now()).getMinutes();
+         const currentTime = Date.now();
+         const elapsedTime = currentTime - lastLoginAttempt.getTime();
 
          if (!isPwValid) {
 
             if (loginAttempts === 0 || loginAttempts % 5 !== 0) {
-               // increase loginAttempts +1
-               await dbUserData.failedLogin()
+               await dbUserData.failedLogin();
                return res.status(400).json({ message: 'Incorrect Credentials' });
             }
             
+            if (elapsedTime >= 300000) {
+               await dbUserData.failedLogin();
+               return res.status(400).json({ message: 'Incorrect Credentials' });
+            }
+
             res.status(400).json({ message: 'To many login attempts. Try again later'});
-
-
          } else {
 
-            const payload = {
-               id: dbUserData._id,
-               firstName: dbUserData.firstName,
-               email: dbUserData.email
+            if (loginAttempts === 0 || loginAttempts % 5 !== 0 || elapsedTime >= 300000) {
+               const payload = {
+                  id: dbUserData._id,
+                  firstName: dbUserData.firstName,
+                  email: dbUserData.email
+               }
+      
+               const token = signToken(payload)
+               
+               await dbUserData.successfulLogin();
+               res.json({user: dbUserData, token, message: 'You are now logged in!'});
+               return
             }
-   
-            const token = signToken(payload)
-   
-            res.json({user: dbUserData, token, message: 'You are now logged in!'})
-         }
 
+            res.status(400).json({ message: 'To many login attempts. Try again later'});
+            return
+         }
       })
       .catch(err => {
          console.log(err);

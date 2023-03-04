@@ -76,6 +76,15 @@ userSchema.methods.failedLogin = async function() {
    )
 }
 
+userSchema.methods.successfulLogin = async function() {
+   return await model('User').findByIdAndUpdate(
+      { _id: this._id },
+      {
+         $set: { loginAttempts: 0, lastLoginAttempt: Date.now()},
+      }
+   )
+}
+
 const User = model('User', userSchema);
 
 module.exports = User;
