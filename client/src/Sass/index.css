@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 *, *::after, *::before {
   box-sizing: border-box;
 }
@@ -5,6 +6,7 @@
 body {
   margin: 0;
   min-height: 100vh;
+  font-family: "Poppins", sans-serif;
 }
 
 /*       User Creation Styles       */
@@ -18,40 +20,64 @@ body {
   text-align: end;
 }
 .title-container h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2.2rem, 3vw, 4rem);
   margin: 0;
-  padding: 1.5em 0.5em 0;
+  padding: 1.2em 0.5em 0;
   color: #EFDECD;
+  line-height: 50px;
 }
 
 .login-container {
   background-color: lightgrey;
-  max-width: 32vw;
-  min-height: 45vh;
-  margin: 10rem auto 0;
+  max-width: 28vw;
+  margin: 12rem auto 0;
   text-align: center;
+  padding: 1.5em 1em;
 }
 
 .login-header h2 {
-  padding: 0.5em 0 0;
   margin: 0;
-  font-size: 2.7rem;
+  font-size: clamp(1.9rem, 2.1vw, 5rem);
+  font-weight: 500;
+}
+.login-header p {
+  font-size: clamp(0.9rem, 0.8vw, 3rem);
+  margin: 0;
+  font-weight: 300;
 }
 
 .form-container {
-  margin-top: 2.5rem;
+  text-align: end;
+  max-width: 80%;
+  margin: 0 auto;
+  margin-top: 2.7rem;
+}
+.form-container button[type=submit] {
+  padding: 0.5em 1.8em;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  border: none;
+  border-radius: 20px;
+}
+.form-container button[type=submit]:hover {
+  font-weight: 600;
+  border: 2px solid black;
+  cursor: pointer;
 }
 
 .form-inputs-container {
-  max-width: 80%;
   display: flex;
   flex-direction: column;
   margin: 1rem auto;
   text-align: start;
 }
 .form-inputs-container label {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 1vw, 3rem);
   margin-bottom: 0.3rem;
+  font-weight: 500;
 }
 .form-inputs-container input {
   padding: 0.7em;
@@ -59,6 +85,7 @@ body {
   letter-spacing: 0.5px;
   border: none;
   outline: none;
+  border-radius: 20px;
 }
 
 /*# sourceMappingURL=index.css.map */
