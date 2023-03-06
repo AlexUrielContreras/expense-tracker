@@ -32,7 +32,7 @@ body {
   max-width: 28vw;
   margin: 12rem auto 0;
   text-align: center;
-  padding: 1.5em 1em;
+  padding: 1.5em 1em 2.5em;
 }
 
 .login-header h2 {
@@ -64,7 +64,7 @@ body {
 }
 .form-container button[type=submit]:hover {
   font-weight: 600;
-  border: 2px solid black;
+  background-color: grey;
   cursor: pointer;
 }
 
@@ -75,7 +75,7 @@ body {
   text-align: start;
 }
 .form-inputs-container label {
-  font-size: clamp(1rem, 1vw, 3rem);
+  font-size: clamp(1rem, 0.95vw, 3rem);
   margin-bottom: 0.3rem;
   font-weight: 500;
 }
