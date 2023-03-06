@@ -24,7 +24,7 @@ body {
    text-align: end;
 
    h1 {
-      font-size: clamp(2.2rem, 3vw, 4rem);
+      font-size: clamp(2rem, 3vw, 4rem);
       margin: 0 ;
       padding: 1.2em .5em 0;
       color: $text-color;
@@ -34,7 +34,7 @@ body {
 
 .login-container {
    background-color: lightgrey;
-   max-width: 28vw;
+   max-width: clamp(21.875em, 50vw, 62.5em);
    margin: 12rem auto 0;
    text-align: center;
    padding: 1.5em 1em 2.5em 
@@ -44,12 +44,12 @@ body {
 
    h2 {
       margin: 0;
-      font-size: clamp(1.9rem, 2.1vw, 5rem);
+      font-size: clamp(1.7rem, 2.1vw, 3.5rem);
       font-weight: 500;
    }
 
    p {
-      font-size: clamp(.9rem, .8vw, 3rem);
+      font-size: clamp(.8rem, .8vw, 2.8rem);
       margin: 0;
       font-weight: 300
    }
@@ -92,12 +92,11 @@ body {
    }
 
    input {
-      padding: .7em;
+      padding: .8em 1em ;
       font-size: .9rem;
       letter-spacing: .5px;
       border: none;
       outline: none;
-      border-radius: 20px
    }
 }
 
@@ -117,5 +116,35 @@ body {
    color: $text-color;
    text-align: center;
    margin: .5em 0 0;
-   cursor: pointer
+   cursor: pointer;
+   font-size: clamp(.8rem, .9vw, 2rem)
+}
+
+@media screen and (max-width: 31.25em) {
+
+   .title-container {
+      text-align: center;
+      
+      h1 {
+         padding-top: .5em;
+      }
+   }
+
+   .form-container {
+      max-width: 90%
+   }
+
+   // .login-container {
+   //    margin-top: 8rem;
+   // }
+
+   .form-section {
+      padding-bottom: 2rem
+   }
+}
+
+@media screen and (max-height: 50em) {
+   .login-container {
+      margin-top: 4.5rem
+   }
 }

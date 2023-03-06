@@ -9,7 +9,7 @@ function UserCreation() {
             <h1>My Expense Tracker</h1>
          </div>
          {isLogin ? 
-            <section>
+            <section className='form-section'>
                <div className='login-container'>
                   <div className='login-header'>
                      <h2>Welcome Back</h2>

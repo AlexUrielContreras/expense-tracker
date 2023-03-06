@@ -20,7 +20,7 @@ body {
   text-align: end;
 }
 .title-container h1 {
-  font-size: clamp(2.2rem, 3vw, 4rem);
+  font-size: clamp(2rem, 3vw, 4rem);
   margin: 0;
   padding: 1.2em 0.5em 0;
   color: #EFDECD;
@@ -29,7 +29,7 @@ body {
 
 .login-container {
   background-color: lightgrey;
-  max-width: 28vw;
+  max-width: clamp(21.875em, 50vw, 62.5em);
   margin: 12rem auto 0;
   text-align: center;
   padding: 1.5em 1em 2.5em;
@@ -37,11 +37,11 @@ body {
 
 .login-header h2 {
   margin: 0;
-  font-size: clamp(1.9rem, 2.1vw, 5rem);
+  font-size: clamp(1.7rem, 2.1vw, 3.5rem);
   font-weight: 500;
 }
 .login-header p {
-  font-size: clamp(0.9rem, 0.8vw, 3rem);
+  font-size: clamp(0.8rem, 0.8vw, 2.8rem);
   margin: 0;
   font-weight: 300;
 }
@@ -80,12 +80,11 @@ body {
   font-weight: 500;
 }
 .form-inputs-container input {
-  padding: 0.7em;
+  padding: 0.8em 1em;
   font-size: 0.9rem;
   letter-spacing: 0.5px;
   border: none;
   outline: none;
-  border-radius: 20px;
 }
 
 .login-error-container {
@@ -105,6 +104,27 @@ body {
   text-align: center;
   margin: 0.5em 0 0;
   cursor: pointer;
+  font-size: clamp(0.8rem, 0.9vw, 2rem);
+}
+
+@media screen and (max-width: 31.25em) {
+  .title-container {
+    text-align: center;
+  }
+  .title-container h1 {
+    padding-top: 0.5em;
+  }
+  .form-container {
+    max-width: 90%;
+  }
+  .form-section {
+    padding-bottom: 2rem;
+  }
+}
+@media screen and (max-height: 50em) {
+  .login-container {
+    margin-top: 4.5rem;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */
