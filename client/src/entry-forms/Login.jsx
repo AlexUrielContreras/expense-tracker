@@ -8,6 +8,7 @@ function Login() {
    function handleFormChange(e) {
       const { name, value} = e.target;
 
+      setErrorMessage('');
       setLoginData({ ...loginData, [name]: value});
    }
 
@@ -44,7 +45,7 @@ function Login() {
          </div>
 
          {errorMessage && 
-            <div>
+            <div className='login-error-container'>
                <p className='error-message'>{errorMessage}</p>
             </div>
          }
