@@ -27,20 +27,23 @@ body {
   line-height: 50px;
 }
 
-.login-container {
+.login-container,
+.signup-container {
   background-color: lightgrey;
   max-width: clamp(21.875em, 50vw, 62.5em);
-  margin: 12rem auto 0;
+  margin: 10rem auto 0;
   text-align: center;
   padding: 1.5em 1em 2.5em;
 }
 
-.login-header h2 {
+.login-header h2,
+.signup-header h2 {
   margin: 0;
   font-size: clamp(1.7rem, 2.1vw, 3.5rem);
   font-weight: 500;
 }
-.login-header p {
+.login-header p,
+.signup-header p {
   font-size: clamp(0.8rem, 0.8vw, 2.8rem);
   margin: 0;
   font-weight: 300;
@@ -78,6 +81,7 @@ body {
   font-size: clamp(1rem, 0.95vw, 3rem);
   margin-bottom: 0.3rem;
   font-weight: 500;
+  padding-left: 0.5em;
 }
 .form-inputs-container input {
   padding: 0.8em 1em;
@@ -85,6 +89,7 @@ body {
   letter-spacing: 0.5px;
   border: none;
   outline: none;
+  border-radius: 20px;
 }
 
 .login-error-container {
@@ -99,7 +104,7 @@ body {
   margin: 0;
 }
 
-.signup-cta {
+.form-cta {
   color: #EFDECD;
   text-align: center;
   margin: 0.5em 0 0;

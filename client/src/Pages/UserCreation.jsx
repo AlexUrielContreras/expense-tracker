@@ -1,4 +1,6 @@
 import Login from '../entry-forms/Login';
+import Signup from '../entry-forms/Signup';
+
 import { useState } from 'react';
 
 function UserCreation() {
@@ -17,11 +19,18 @@ function UserCreation() {
                   </div>
                   <Login />
                </div>
-               <p className='signup-cta' onClick={() => setIsLogin(false)}> Dont have an account yet --- Sign up here </p>
+               <p className='form-cta' onClick={() => setIsLogin(false)}> Dont have an account yet --- Sign up here </p>
             </section>
          :
-            <section className='signup-container'>
-               {/* Sign up */}
+            <section className='form-section'>
+               <div className='signup-container'> 
+                  <div className='signup-header'>
+                     <h2>Create an Account</h2>
+                  </div>
+                  <Signup />
+               </div>
+
+               <p className='form-cta' onClick={() => setIsLogin(true)}>Already have an account --- Login here</p>
             </section>
          }
       </div>
