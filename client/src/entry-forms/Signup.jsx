@@ -18,7 +18,7 @@ function Signup() {
 
       if (formData.password) {
          try {
-            await axios({
+            const response = await axios({
                method: 'post',
                url: 'api/user/',
                data: JSON.stringify(formData),
@@ -27,7 +27,9 @@ function Signup() {
                }
             });
 
-            Auth.login();
+            const token = response.data.token
+
+            Auth.login(token);
             
          } catch (err) {
             console.log(err)

@@ -28,13 +28,13 @@ class AuthService {
     // retrieve token from localStorage
     getToken() {
         // Retrieve the user token from localStorage
-        return localStorage.getItem('id_token')
+        return sessionStorage.getItem('id_token')
     }
 
     // set token to localStorage
     login(idToken) {
         // Save user token to localStorage
-        localStorage.setItem('id_token', idToken);
+        sessionStorage.setItem('id_token', idToken);
 
         window.location.assign('/dashboard');
     }
@@ -42,7 +42,7 @@ class AuthService {
     // clear token from localStorage and force logout with reload
     logout() {
         // Clear user token and profile data from localStorage
-        localStorage.removeItem('id_token');
+        sessionStorage.removeItem('id_token');
 
         //this will reload the page and reset the state of the app
         window.location.assign('/')

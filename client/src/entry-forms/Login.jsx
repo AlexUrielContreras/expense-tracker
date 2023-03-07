@@ -19,7 +19,7 @@ function Login() {
       
       if (loginData.password) {
          try {
-            await axios({
+            const response = await axios({
                method: 'post',
                url: 'api/user/login',
                data: JSON.stringify(loginData),
@@ -28,7 +28,8 @@ function Login() {
                }
             });
 
-            Auth.login();
+            const token = response.data.token
+            Auth.login(token);
             
          } catch (err) {
             console.log(err)
