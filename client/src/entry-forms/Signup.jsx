@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 
 function Signup() {
-   const [ formData, setFormData ] = useState({ firstName: '', budget:'', email: '', password: ''});
+   const [ formData, setFormData ] = useState({ firstName: '', budgetAmount:'', email: '', password: ''});
 
    function handleFormData(e) {
       const { name, value } = e.target;
@@ -36,8 +36,8 @@ function Signup() {
          </div>
 
          <div className='form-inputs-container'>
-            <label htmlFor='budget'>Monthly Budget</label>
-            <input type='number' name='budget' id='budget' onChange={handleFormData} />
+            <label htmlFor='budgetAmount'>Monthly Budget</label>
+            <input type='number' name='budgetAmount' id='budgetAmount' onChange={handleFormData} />
          </div>
 
          <div className='form-inputs-container'>
@@ -47,7 +47,7 @@ function Signup() {
 
          <div className='form-inputs-container'>
             <label htmlFor='password'>Password</label>
-            <input type='password' name='password' id='password' onChange={handleFormData} required/>
+            <input type='password' name='password' id='password' onChange={handleFormData} minLength='6' required/>
          </div>
 
          <button type='submit'>Sign up</button>

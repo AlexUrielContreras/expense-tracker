@@ -30,10 +30,10 @@ body {
 .login-container,
 .signup-container {
   background-color: lightgrey;
-  max-width: clamp(21.875em, 50vw, 62.5em);
+  max-width: clamp(21.875em, 30vw, 62.5em);
   margin: 10rem auto 0;
   text-align: center;
-  padding: 1.5em 1em 2.5em;
+  padding: 1.5em 1em;
 }
 
 .login-header h2,
@@ -51,7 +51,7 @@ body {
 
 .form-container {
   text-align: end;
-  max-width: 80%;
+  max-width: 85%;
   margin: 0 auto;
   margin-top: 2.7rem;
 }
@@ -84,12 +84,13 @@ body {
   padding-left: 0.5em;
 }
 .form-inputs-container input {
-  padding: 0.8em 1em;
+  padding: 0.6em 1em;
   font-size: 0.9rem;
   letter-spacing: 0.5px;
   border: none;
   outline: none;
   border-radius: 20px;
+  font-family: "Poppins", sans-serif;
 }
 
 .login-error-container {
@@ -99,7 +100,7 @@ body {
 
 .error-message {
   color: #A40E0E;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 1.1vw, 2rem);
   font-weight: 600;
   margin: 0;
 }
@@ -109,10 +110,15 @@ body {
   text-align: center;
   margin: 0.5em 0 0;
   cursor: pointer;
-  font-size: clamp(0.8rem, 0.9vw, 2rem);
+  font-size: clamp(0.9rem, 0.9vw, 2rem);
 }
 
-@media screen and (max-width: 31.25em) {
+@media screen and (max-width: 56.25em) {
+  .form-container {
+    max-width: 95%;
+  }
+}
+@media screen and (max-width: 36.25em) {
   .title-container {
     text-align: center;
   }
@@ -120,10 +126,13 @@ body {
     padding-top: 0.5em;
   }
   .form-container {
-    max-width: 90%;
+    max-width: 95%;
   }
   .form-section {
     padding-bottom: 2rem;
+  }
+  .signup-container {
+    margin-top: 3rem;
   }
 }
 @media screen and (max-height: 50em) {
