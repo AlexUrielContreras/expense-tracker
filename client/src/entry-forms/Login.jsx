@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
+
+import Auth from '../utills/auth';
  
 function Login() {
    const [ loginData, setLoginData ] = useState({ email: '', password: ''});
@@ -24,7 +26,10 @@ function Login() {
                headers: {
                   'Content-Type' : 'application/json'
                }
-            }) 
+            });
+
+            Auth.login();
+            
          } catch (err) {
             console.log(err)
             setErrorMessage('Incorrect Credentials')

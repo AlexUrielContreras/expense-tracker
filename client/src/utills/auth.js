@@ -36,7 +36,7 @@ class AuthService {
         // Save user token to localStorage
         localStorage.setItem('id_token', idToken);
 
-        window.location.assign('u/dashboard');
+        window.location.assign('/dashboard');
     }
 
     // clear token from localStorage and force logout with reload

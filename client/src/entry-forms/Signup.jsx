@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useState } from 'react';
 
+import Auth from '../utills/auth';
+
 function Signup() {
    const [ formData, setFormData ] = useState({ firstName: '', budgetAmount:'', email: '', password: ''});
 
@@ -15,16 +17,23 @@ function Signup() {
       e.preventDefault();
 
       if (formData.password) {
-         const response = await axios({
-            method: 'post',
-            url: 'api/user/',
-            data: JSON.stringify(formData),
-            headers: {
-               'Content-Type' : 'application/json'
-            }
-         });
+         try {
+            await axios({
+               method: 'post',
+               url: 'api/user/',
+               data: JSON.stringify(formData),
+               headers: {
+                  'Content-Type' : 'application/json'
+               }
+            });
 
-         console.log(response)
+            Auth.login();
+            
+         } catch (err) {
+            console.log(err)
+         }
+
+      
       }
    }
 
