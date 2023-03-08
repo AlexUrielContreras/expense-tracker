@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
-$text-color: #EFDECD;
+$main-text-color: #FFE4C4;
 $font-poppins: 'Poppins', sans-serif;
 
 *, *::after, *::before {
@@ -11,6 +11,7 @@ body {
    margin: 0;
    min-height: 100vh;
    font-family: $font-poppins;
+   background-color: black
 }
 
 /*       User Creation Styles       */
@@ -28,7 +29,7 @@ body {
       font-size: clamp(2rem, 3vw, 4rem);
       margin: 0 ;
       padding: 1.2em .5em 0;
-      color: $text-color;
+      color: $main-text-color;
       line-height: 50px
    }
 }
@@ -119,11 +120,40 @@ body {
 }
 
 .form-cta {
-   color: $text-color;
+   color: $main-text-color;
    text-align: center;
    margin: .5em 0 0;
    cursor: pointer;
    font-size: clamp(.9rem, .9vw, 2rem);
+}
+
+/*       Dashboard Styles        */
+.dash-container {
+   max-width: 90vw;
+   min-height: 100vh;
+   margin: 0 auto
+}
+
+.dash-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: baseline;
+   padding: .5em 0;
+
+   h1 {
+      margin: 0;
+      color: $main-text-color
+   }
+
+   input[type='button'] {
+      padding: 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: $main-text-color;
+      background-color: black;
+      border: none;
+      cursor: pointer
+   }
 }
 
 @media screen and (max-width: 56.25em) { // 900 pixels
