@@ -11,7 +11,8 @@ body {
    margin: 0;
    min-height: 100vh;
    font-family: $font-poppins;
-   background-color: black
+   background-color: black;
+   color: $main-text-color
 }
 
 /*       User Creation Styles       */
@@ -156,6 +157,14 @@ body {
    }
 }
 
+.dash-main-section {
+   background-color: lightgrey;
+   margin-top: 7rem;
+   padding: 1.5em 0;
+   display: flex;
+   justify-content: space-around
+}
+
 @media screen and (max-width: 56.25em) { // 900 pixels
    .form-container {
       max-width: 95%
@@ -182,6 +191,15 @@ body {
 
    .signup-container {
       margin-top: 3rem
+   }
+
+   .dash-header {
+      flex-direction: column;
+      align-items: center;
+
+      h1 {
+         margin-bottom: .5rem
+      }
    }
 }
 

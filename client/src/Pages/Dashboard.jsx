@@ -1,5 +1,7 @@
 import Auth from '../utills/auth';
 
+import AddPayment from '../components/AddPayment';
+
 import { useState, useEffect } from 'react';
 import getUser from '../axios/getUser';
 
@@ -33,6 +35,23 @@ function Dashboard() {
             <h1>{username}'s Dashboard</h1>
             <input type='button' value='Logout' onClick={() => Auth.logout()}/>
          </header>
+
+         <section className='dash-main-section'>
+            <div className='dash-google-chart'>
+               {/* Google donut chart */}
+            </div>
+
+            <div className='dash-add-payment'>
+               <div className='dash-pay-header'>
+                  <h2>Add Payment</h2>
+               </div>
+               <AddPayment />
+            </div>
+         </section>
+
+         <section className='dash-past-payment'>
+
+         </section>
       </div>
    )
 };
