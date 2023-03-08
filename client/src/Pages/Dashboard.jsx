@@ -1,6 +1,7 @@
 import Auth from '../utills/auth';
 
 import AddPayment from '../components/AddPayment';
+import DonutChart from '../components/DonutChart';
 
 import { useState, useEffect } from 'react';
 import getUser from '../axios/getUser';
@@ -38,7 +39,7 @@ function Dashboard() {
 
          <section className='dash-main-section'>
             <div className='dash-google-chart'>
-               {/* Google donut chart */}
+               <DonutChart />
             </div>
 
             <div className='dash-add-payment'>
