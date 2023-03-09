@@ -10,6 +10,7 @@ function Dashboard() {
    const [ payments, setPayments ] = useState([]);
    const [ username, setUsername ] = useState('');
    const [ budget, setBudget ] = useState();
+   const [ madePayment, setMadePayment ] = useState(false)
 
    useEffect(() => {
       const token = Auth.getToken();
@@ -22,13 +23,14 @@ function Dashboard() {
             setUsername(firstName);
             setBudget(budgetAmount);
             setPayments([...payments])
+            setMadePayment(false)
          } catch (err) {
             console.log(err)
          }
       }
 
       getData();
-   }, []);
+   }, [madePayment]);
 
    return (
       <div className='dash-container'>
@@ -39,14 +41,14 @@ function Dashboard() {
 
          <section className='dash-main-section'>
             <div className='dash-google-chart'>
-               <DonutChart />
+               <DonutChart payments={payments}/>
             </div>
 
             <div className='dash-add-payment'>
                <div className='dash-pay-header'>
                   <h2>Add Payment</h2>
                </div>
-               <AddPayment />
+               <AddPayment setMadePayment={setMadePayment} />
             </div>
          </section>
 

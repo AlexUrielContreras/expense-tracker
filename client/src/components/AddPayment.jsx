@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Auth from '../utills/auth';
 
-function AddPayment() {
+function AddPayment({ setMadePayment }) {
    async function handlePaySubmit(e) {
       e.preventDefault();
 
@@ -23,7 +23,9 @@ function AddPayment() {
                'Content-Type' : 'application/json',
                'Authorization' : token
             }
-         })
+         });
+
+         setMadePayment(true)
       } catch (err) {
          console.log(err)
       }
@@ -42,7 +44,7 @@ function AddPayment() {
                      <option value='Shopping'>Shopping</option>
                      <option value='Subscription'>Subscription</option>
                      <option value='Travel'>Travel</option>
-                     <option value='Entertanment'>Entertainment</option>
+                     <option value='Entertainment'>Entertainment</option>
                   </select>
                </div>
 
