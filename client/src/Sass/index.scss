@@ -159,7 +159,6 @@ body {
 .dash-main-section {
    background-color: lightgrey;
    margin-top: 7rem;
-   padding: 1.5em 0;
    display: flex;
    justify-content: space-around
 }
@@ -199,6 +198,10 @@ body {
       h1 {
          margin-bottom: .5rem
       }
+   }
+
+   .dash-main-section {
+      flex-direction: column
    }
 }
 

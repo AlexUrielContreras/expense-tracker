@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react';
 import getUser from '../axios/getUser';
 
 function Dashboard() {
-   const [ payments, setPayments ] = useState([]);
    const [ username, setUsername ] = useState('');
    const [ budget, setBudget ] = useState();
    const [ madePayment, setMadePayment ] = useState(false)
@@ -22,7 +21,6 @@ function Dashboard() {
 
             setUsername(firstName);
             setBudget(budgetAmount);
-            setPayments([...payments])
             setMadePayment(false)
          } catch (err) {
             console.log(err)
@@ -41,7 +39,7 @@ function Dashboard() {
 
          <section className='dash-main-section'>
             <div className='dash-google-chart'>
-               <DonutChart payments={payments}/>
+               <DonutChart madePayment={madePayment}/>
             </div>
 
             <div className='dash-add-payment'>

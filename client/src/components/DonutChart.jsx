@@ -1,59 +1,84 @@
 import { Chart } from 'react-google-charts';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function DonutChart({ payments }) { 
-   const [ payArr, setPayArr ] = useState([['Rent', 1000]]);
+import Auth from '../utills/auth';
+import getUser from '../axios/getUser';
 
-   for (let index in payments) {
-      const category = payments[index].category;
-      const amount = parseFloat(payments[index].paymentAmount.$numberDecimal);
+function DonutChart({ madePayment }) { 
+   const [ payArr, setPayArr ] = useState([]);
 
-      let dupIndex;
+   useEffect(() => {
+      async function getPayment() {
+         const token = Auth.getToken()
+         try {
+            const response = await getUser(token);
 
-      const dup = payArr?.some((ele, i) => {
-         const valid = ele[0] === category
-         
-         if ( valid ) {
-            dupIndex = i;
-            return true
+            setPayArr(response.data.payments);
+         } catch (err) {
+            console.log(err)
+
          }
+      }
 
-         return false
+      getPayment()
+   }, [madePayment]);
+
+   function paymentData() {
+      let data = [
+         ['Category', 'Amount']
+      ];
+
+      const paymentSet = [];
+   
+      payArr?.forEach(el => {
+         const category = el.category;
+         const amount = parseFloat(el.paymentAmount.$numberDecimal);
+   
+         let dupIndex = 0
+   
+         const dups = paymentSet?.some((element2, i) => {
+           if (element2[0] === category) {
+               dupIndex = i;
+               return true
+           } else {
+               return false
+           }
+         })
+   
+         if ( !dups ) {
+            paymentSet.push([category, amount])
+         } else {
+            const newAmount = paymentSet[dupIndex][1] + amount
+   
+            paymentSet[dupIndex][1] = newAmount
+         }
       });
 
-      if ( !dup ) {
-         setPayArr([...payArr, [category, amount]]);
+      paymentSet.forEach(keys => {
+         data = [...data, keys]
+      });
 
-      } else {
-         const updatedAmount = payArr[dupIndex][1] + amount;
-
-      };
-
+      return data
    }
-
-   let data = [
-      ['Category', 'Amount']
-   ]
-
-   payArr.map(keys => {
-      return data = [...data, keys]
-   })
 
    const options = {
       pieHole: 0.3,
-      height: '350',
-      width: '350',
-      chartArea: {width:'100%', height: '100%'},
+      height: '370',
+      maxwidth: '370',
+      chartArea: {width:'98%', height: '98%'},
       legend: 'none', 
-      backgroundColor: 'lightgrey'
+      backgroundColor: 'lightgrey',
+      fontSize: 15,
+      pieSliceText: 'label',
    }
 
    return (
+
       <Chart 
          chartType='PieChart'
-         data={data}
+         data={paymentData()}
          options={options}
-      />
+      /> 
    )
 };
 
