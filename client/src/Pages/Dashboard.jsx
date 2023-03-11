@@ -43,8 +43,8 @@ function Dashboard() {
             </div>
 
             <div className='dash-add-payment'>
-               <div className='dash-pay-header'>
-                  <h2>Add Payment</h2>
+               <div>
+                  <h2 className='dash-pay-title'>Add Payment</h2>
                </div>
                <AddPayment setMadePayment={setMadePayment} />
             </div>

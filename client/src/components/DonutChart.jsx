@@ -63,13 +63,13 @@ function DonutChart({ madePayment }) {
 
    const options = {
       pieHole: 0.3,
-      height: '370',
-      maxwidth: '370',
-      chartArea: {width:'98%', height: '98%'},
+      height: '400',
+      width: '370',
+      chartArea: {width:'98%', height: '100%'},
       legend: 'none', 
       backgroundColor: 'lightgrey',
       fontSize: 15,
-      pieSliceText: 'label',
+      pieSliceText: 'label'
    }
 
    return (

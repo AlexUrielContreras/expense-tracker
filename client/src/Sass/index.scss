@@ -158,15 +158,59 @@ body {
 
 .dash-main-section {
    background-color: lightgrey;
-   margin-top: 7rem;
+   margin-top: 6rem;
+   padding: 1.5em 0;
    display: flex;
    justify-content: space-around
+}
+
+.dash-add-payment {
+   min-width: 40%;
+   padding: 1em;
+   border: 2px solid black
+}
+
+.dash-pay-title {
+   font-size: 2.2rem;
+   margin-top: 0;
+}
+
+.payment-form{
+
+   div {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem
+   }
+
+   label {
+      font-size: 1.2rem;
+      margin-bottom: .3rem
+   }
+
+   select, input {
+      padding: .8em .5em;
+      font-size: 1rem
+   }
+
+   select {
+      cursor: pointer
+   }
+
+   button {
+      min-width: 50%;
+      padding: 1em .5em;
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      cursor: pointer
+   }
 }
 
 @media screen and (max-width: 56.25em) { // 900 pixels
    .form-container {
       max-width: 95%
    }
+   
 }
 
 @media screen and (max-width: 36.25em) {  // 500 pixels
@@ -201,7 +245,16 @@ body {
    }
 
    .dash-main-section {
-      flex-direction: column
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem 0;
+   }
+
+   .dash-add-payment {
+      text-align: center;
+      border: unset;
+      border-top: 2px solid black;
+      min-width: 90%
    }
 }
 

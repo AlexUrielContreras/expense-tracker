@@ -33,11 +33,11 @@ function AddPayment({ setMadePayment }) {
 
    return (
          <div>  
-            <form onSubmit={handlePaySubmit}>
-               <div>
-                  <label htmlFor='category'></label>
+            <form onSubmit={handlePaySubmit} className='payment-form'>
+               <div className='category-dd'>
+                  <label htmlFor='category'>Category</label>
                   <select name='category' id='category' required>
-                     <option value='' >Please select one</option>
+                     <option value=''>Please select an option</option>
                      <option value='Rent'>Rent</option>
                      <option value='Utility Bills'>Utility Bills</option>
                      <option value='Food'>Food</option>
@@ -49,8 +49,8 @@ function AddPayment({ setMadePayment }) {
                </div>
 
                <div>
-                  <label htmlFor='pay-amount'></label>
-                  <input type='text'placeholder='Payment Amount' name='pay-amount' autoComplete='off' id='pay-amount' required/>
+                  <label htmlFor='pay-amount'>Payment Amount</label>
+                  <input type='text'placeholder='$10000' name='pay-amount' autoComplete='off' id='pay-amount' required/>
                </div>
 
                <button type='submit'>Add Payment</button>
