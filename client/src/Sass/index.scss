@@ -14,6 +14,10 @@ body {
    background-color: black;
 }
 
+.pointer {
+   cursor: pointer
+}
+
 /*       User Creation Styles       */
 
 .user-creation-container {
@@ -157,11 +161,15 @@ body {
 }
 
 .dash-main-section {
-   background-color: lightgrey;
    margin-top: 6rem;
-   padding: 1.5em 0;
+   position: relative
+}
+
+.id {
+   background-color: lightgrey;
    display: flex;
-   justify-content: space-around
+   justify-content: space-around;
+   padding: 1.5em 0;
 }
 
 .dash-add-payment {
@@ -206,6 +214,26 @@ body {
    }
 }
 
+.dash-stats {
+   display: flex;
+
+   div {
+      min-width: 50%
+   }
+   h3 {
+      color: $main-text-color;
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 0
+   }
+}
+
+.budget {
+   span {
+      color: white
+   }
+}
+
 @media screen and (max-width: 56.25em) { // 900 pixels
    .form-container {
       max-width: 95%
@@ -245,9 +273,12 @@ body {
    }
 
    .dash-main-section {
+      margin: 2rem 0;
+   }
+
+   .id {
       flex-direction: column;
       align-items: center;
-      margin: 2rem 0;
    }
 
    .dash-add-payment {
