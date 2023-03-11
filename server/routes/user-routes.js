@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { login, createUser, findAllUsers, findUserById, deleteUser } = require('../controllers.js/user-controller');
+const { login, createUser, findAllUsers, findUserById, updateUser, deleteUser } = require('../controllers.js/user-controller');
 const { authenticateToken } = require('../utills/auth');
 
 router 
@@ -12,6 +12,7 @@ router
    .route('/dashboard')
    .get(authenticateToken, findUserById)
    .delete(authenticateToken, deleteUser)
+   .put(authenticateToken, updateUser)
 
 router 
    .route('/login')
