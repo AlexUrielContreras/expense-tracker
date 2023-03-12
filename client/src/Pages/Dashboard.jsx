@@ -11,7 +11,8 @@ function Dashboard() {
    const [ username, setUsername ] = useState('');
    const [ budget, setBudget ] = useState();
    const [ madePayment, setMadePayment ] = useState(false);
-   const [ spanEl, setSpanEl ] = useState('span')
+   const [ spanEl, setSpanEl ] = useState('span');
+   const [ monthlySpending, setMontlySpending ] = useState(0);
 
    useEffect(() => {
       const token = Auth.getToken();
@@ -35,20 +36,27 @@ function Dashboard() {
    async function handleBudgetSubmit(e) {
       e.preventDefault();
 
-      // const budgetAmount = e.target[0].value;
-      // const token = Auth.getToken();
+      const budgetAmount = parseFloat(e.target[0].value);
+      const token = Auth.getToken();
 
-      // try {
-      //    const budgetResponse = await axios({
-      //       method: 'post',
+      try {
+         await axios({
+            method: 'put',
+            url: 'api/user/dashboard',
+            data: {
+               budgetAmount: budgetAmount
+            },
+            headers: {
+               'Content-Type' : 'application/json',
+               'Authorization' : token
+            }
+         });
 
-      //    });
-      //    setMadePayment(true)
-      // } catch (err) {
-      //    console.log(err)
-      // }
-
-      setSpanEl('span')
+         setMadePayment(true);
+         setSpanEl('span');
+      } catch (err) {
+         console.log(err)
+      }
    }
 
    return (
@@ -68,14 +76,14 @@ function Dashboard() {
                         <form onSubmit={handleBudgetSubmit}>
                            <label htmlFor='budgetAmount'></label>
                            <input type='text' name='budgetAmount' id='budgetAmount'/>
-                           <button>Submit</button>
+                           <button type='submit'>Submit</button>
                         </form>
                      )
                   }           
                </div>
 
                <div className='amount-spent'>
-                  <h3>Monthly Spending: 1000</h3>
+                  <h3>Monthly Spending: {monthlySpending}</h3>
                </div>
             </div>
 
