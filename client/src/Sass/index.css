@@ -147,49 +147,6 @@ body {
 
 .dash-main-section {
   margin-top: 6rem;
-  position: relative;
-}
-
-.id {
-  background-color: lightgrey;
-  display: flex;
-  justify-content: space-around;
-  padding: 1.5em 0;
-}
-
-.dash-add-payment {
-  min-width: 40%;
-  padding: 1em;
-  border: 2px solid black;
-}
-
-.dash-pay-title {
-  font-size: 2.2rem;
-  margin-top: 0;
-}
-
-.payment-form div {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-.payment-form label {
-  font-size: 1.2rem;
-  margin-bottom: 0.3rem;
-}
-.payment-form select, .payment-form input {
-  padding: 0.8em 0.5em;
-  font-size: 1rem;
-}
-.payment-form select {
-  cursor: pointer;
-}
-.payment-form button {
-  min-width: 50%;
-  padding: 1em 0.5em;
-  margin-top: 1.5rem;
-  font-size: 1rem;
-  cursor: pointer;
 }
 
 .dash-stats {
@@ -229,6 +186,48 @@ body {
 
 .over-budget {
   color: red;
+}
+
+.dash-pay-chart {
+  background-color: lightgrey;
+  display: flex;
+  justify-content: space-around;
+  padding: 1.5em 0;
+}
+
+.dash-add-payment {
+  min-width: 40%;
+  padding: 1em;
+  border: 2px solid black;
+}
+
+.dash-pay-title {
+  font-size: 2.2rem;
+  margin-top: 0;
+}
+
+.payment-form div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.payment-form label {
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+.payment-form select, .payment-form input {
+  padding: 0.8em 0.5em;
+  font-size: 1rem;
+}
+.payment-form select {
+  cursor: pointer;
+}
+.payment-form button {
+  min-width: 50%;
+  padding: 1em 0.5em;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 56.25em) {

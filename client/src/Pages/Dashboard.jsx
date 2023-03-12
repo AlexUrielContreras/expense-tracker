@@ -73,7 +73,6 @@ function Dashboard() {
          <section className='dash-main-section'>
             <div className='dash-stats'>
                <div className='budget'>
-
                   {!budgetEdit ?  
                      <h3>Budget:
                         {budget ? <span onClick={() => setBudgetEdit(true)} className={`pointer ${budget < monthlySpending ? 'over-budget' : 'under-budget'}`}> ${budget}</span> 

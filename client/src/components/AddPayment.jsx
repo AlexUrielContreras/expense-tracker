@@ -1,7 +1,18 @@
 import axios from 'axios';
 import Auth from '../utills/auth';
 
+import { useState } from 'react';
+
 function AddPayment({ setMadePayment }) {
+   const [ paymentInput, setPaymentInput ] = useState('');
+   const [ dropDownDefault, setDropDownDefault ] = useState('');
+
+   function handlePaymentChange(e) {
+      const paymentAmount = e.target.value.trim();
+
+      setPaymentInput(paymentAmount);
+   };
+
    async function handlePaySubmit(e) {
       e.preventDefault();
 
@@ -25,7 +36,9 @@ function AddPayment({ setMadePayment }) {
             }
          });
 
-         setMadePayment(true)
+         setPaymentInput('');
+         setDropDownDefault('')
+         setMadePayment(true);
       } catch (err) {
          console.log(err)
       }
@@ -36,8 +49,8 @@ function AddPayment({ setMadePayment }) {
             <form onSubmit={handlePaySubmit} className='payment-form'>
                <div className='category-dd'>
                   <label htmlFor='category'>Category</label>
-                  <select name='category' id='category' required>
-                     <option value=''>Please select an option</option>
+                  <select name='category' id='category' value={dropDownDefault} onChange={(e) => setDropDownDefault(e.target.value)} required>
+                     <option value='' disabled>Please select an option</option>
                      <option value='Rent'>Rent</option>
                      <option value='Utility Bills'>Utility Bills</option>
                      <option value='Food'>Food</option>
@@ -50,7 +63,7 @@ function AddPayment({ setMadePayment }) {
 
                <div>
                   <label htmlFor='pay-amount'>Payment Amount</label>
-                  <input type='text'placeholder='$10000' name='pay-amount' autoComplete='off' id='pay-amount' required/>
+                  <input type='text'placeholder='E.g $10000' name='pay-amount' value={paymentInput} onChange={handlePaymentChange} autoComplete='off' id='pay-amount' required/>
                </div>
 
                <button type='submit'>Add Payment</button>
