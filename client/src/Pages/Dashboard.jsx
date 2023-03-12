@@ -11,7 +11,7 @@ function Dashboard() {
    const [ username, setUsername ] = useState('');
    const [ budget, setBudget ] = useState();
    const [ madePayment, setMadePayment ] = useState(false);
-   const [ spanEl, setSpanEl ] = useState('span');
+   const [ budgetEdit, setBudgetEdit ] = useState(false);
    const [ monthlySpending, setMontlySpending ] = useState(0);
 
    useEffect(() => {
@@ -24,7 +24,8 @@ function Dashboard() {
 
             setUsername(firstName);
             setBudget(budgetAmount);
-            setMadePayment(false)
+            setMadePayment(false);
+            setBudgetEdit(false);
          } catch (err) {
             console.log(err)
          }
@@ -38,6 +39,10 @@ function Dashboard() {
 
       const budgetAmount = parseFloat(e.target[0].value);
       const token = Auth.getToken();
+
+      if (!budgetAmount && budgetAmount !== 0) {
+         return setBudgetEdit(false)
+      };
 
       try {
          await axios({
@@ -53,7 +58,6 @@ function Dashboard() {
          });
 
          setMadePayment(true);
-         setSpanEl('span');
       } catch (err) {
          console.log(err)
       }
@@ -69,17 +73,20 @@ function Dashboard() {
          <section className='dash-main-section'>
             <div className='dash-stats'>
                <div className='budget'>
-                  {budget ? 
-                     <h3>Budget: ${budget}</h3>
+
+                  {!budgetEdit ?  
+                     <h3>Budget: 
+                        {budget ? <span onClick={() => setBudgetEdit(true)} className='pointer'> {budget}</span> 
+                        : 
+                        <span onClick={() => setBudgetEdit(true)} className='pointer'> Click here to set your budget</span>}
+                     </h3> 
                   :
-                     (spanEl === 'span' ? <span onClick={() => setSpanEl('form')} className='pointer'>Click here to set your monthly budget</span> :  
-                        <form onSubmit={handleBudgetSubmit}>
-                           <label htmlFor='budgetAmount'></label>
-                           <input type='text' name='budgetAmount' id='budgetAmount'/>
-                           <button type='submit'>Submit</button>
-                        </form>
-                     )
-                  }           
+                     <form onSubmit={handleBudgetSubmit}>
+                        <label htmlFor='budgetAmount'></label>
+                        <input type='text' name='budgetAmount' id='budgetAmount'/>
+                        <button type='submit'>Submit</button>
+                     </form>                      
+                  }
                </div>
 
                <div className='amount-spent'>
