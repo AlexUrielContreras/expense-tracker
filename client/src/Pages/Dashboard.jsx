@@ -1,5 +1,6 @@
 import Auth from '../utills/auth';
 import axios from 'axios';
+import formatMoney from '../utills/moneyFormat'
 
 import AddPayment from '../components/AddPayment';
 import DonutChart from '../components/DonutChart';
@@ -20,12 +21,13 @@ function Dashboard() {
       async function getData() {
          try {
             const response = await getUser(token);
-            const { firstName, budgetAmount } = response.data;
+            const { firstName, budgetAmount, payments } = response.data;
 
             setUsername(firstName);
             setBudget(budgetAmount);
             setMadePayment(false);
             setBudgetEdit(false);
+            getMontlySpending(payments)
          } catch (err) {
             console.log(err)
          }
@@ -63,6 +65,16 @@ function Dashboard() {
       }
    }
 
+   function getMontlySpending(total) {
+      let monthlyAmount = 0
+
+      for (let index in total) {
+         monthlyAmount += parseFloat(total[index].paymentAmount.$numberDecimal)
+      };
+
+      setMontlySpending(monthlyAmount)
+   }
+
    return (
       <div className='dash-container'>
          <header className='dash-header'>
@@ -75,22 +87,21 @@ function Dashboard() {
                <div className='budget'>
                   {!budgetEdit ?  
                      <h3>Budget:
-                        {budget ? <span onClick={() => setBudgetEdit(true)} className={`pointer ${budget < monthlySpending ? 'over-budget' : 'under-budget'}`}> ${budget}</span> 
+                        {budget ? <span onClick={() => setBudgetEdit(true)} className={`pointer ${budget < monthlySpending ? 'over-budget' : 'under-budget'}`}> {formatMoney(budget)}</span> 
                         : 
                         <span onClick={() => setBudgetEdit(true)} className='pointer'> Click here to set your budget</span>}
                      </h3> 
                   :
                      <form onSubmit={handleBudgetSubmit} className='budget-form'>
                         <label htmlFor='budgetAmount'></label>
-                        <input type='text' name='budgetAmount' placeholder='Enter your Monthly Budget' id='budgetAmount'/>
+                        <input type='number' name='budgetAmount' placeholder='Enter your Monthly Budget' id='budgetAmount'/>
                         <button type='submit'>Submit</button>
                      </form>                      
                   }
-
                </div>
 
                <div className='dash-monthly-spending'>
-                  <h3>Monthly Spending: ${monthlySpending}</h3>
+                  <h3>Monthly Spending: {formatMoney(monthlySpending)}</h3>
                </div>
             </div>
 
