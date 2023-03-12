@@ -205,8 +205,30 @@ body {
   margin: 0;
 }
 
-.budget span {
+.budget-form input {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  outline: none;
+  border: 2px solid lightgrey;
+  background-color: black;
   color: white;
+}
+.budget-form button {
+  margin-left: 2rem;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: black;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.under-budget {
+  color: rgb(14, 236, 14);
+}
+
+.over-budget {
+  color: red;
 }
 
 @media screen and (max-width: 56.25em) {

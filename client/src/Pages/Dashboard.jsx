@@ -75,26 +75,27 @@ function Dashboard() {
                <div className='budget'>
 
                   {!budgetEdit ?  
-                     <h3>Budget: 
-                        {budget ? <span onClick={() => setBudgetEdit(true)} className='pointer'> {budget}</span> 
+                     <h3>Budget:
+                        {budget ? <span onClick={() => setBudgetEdit(true)} className={`pointer ${budget < monthlySpending ? 'over-budget' : 'under-budget'}`}> ${budget}</span> 
                         : 
                         <span onClick={() => setBudgetEdit(true)} className='pointer'> Click here to set your budget</span>}
                      </h3> 
                   :
-                     <form onSubmit={handleBudgetSubmit}>
+                     <form onSubmit={handleBudgetSubmit} className='budget-form'>
                         <label htmlFor='budgetAmount'></label>
-                        <input type='text' name='budgetAmount' id='budgetAmount'/>
+                        <input type='text' name='budgetAmount' placeholder='Enter your Monthly Budget' id='budgetAmount'/>
                         <button type='submit'>Submit</button>
                      </form>                      
                   }
+
                </div>
 
-               <div className='amount-spent'>
-                  <h3>Monthly Spending: {monthlySpending}</h3>
+               <div className='dash-monthly-spending'>
+                  <h3>Monthly Spending: ${monthlySpending}</h3>
                </div>
             </div>
 
-            <div className='id'>
+            <div className='dash-pay-chart'>
                <div className='dash-google-chart'>
                   <DonutChart madePayment={madePayment}/>
                </div>
