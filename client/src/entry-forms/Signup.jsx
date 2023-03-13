@@ -20,7 +20,7 @@ function Signup() {
          try {
             const response = await axios({
                method: 'post',
-               url: 'api/user/',
+               url: 'api/users/',
                data: JSON.stringify(formData),
                headers: {
                   'Content-Type' : 'application/json'

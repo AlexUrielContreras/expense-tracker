@@ -49,7 +49,7 @@ function Dashboard() {
       try {
          await axios({
             method: 'put',
-            url: 'api/user/dashboard',
+            url: 'api/users/dashboard',
             data: {
                budgetAmount: budgetAmount
             },

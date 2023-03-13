@@ -25,7 +25,7 @@ function AddPayment({ setMadePayment }) {
       try {
          await axios({
             method: 'post',
-            url: 'api/payment/dashboard',
+            url: 'api/payments/dashboard',
             data: JSON.stringify({
                category, 
                paymentAmount
