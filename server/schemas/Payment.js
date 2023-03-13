@@ -2,6 +2,11 @@ const { Schema, model } = require('mongoose');
 
 const paymentSchema = new Schema({
 
+   userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+   },
+
    category: {
       type: String,
       required: true,

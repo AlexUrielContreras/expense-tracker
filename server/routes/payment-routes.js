@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { createPayment, findPaymentById, findAllPayments, updatePayment, deletePayments } = require('../controllers.js/payment-controller');
+const { createPayment, findPaymentById, findAllPayments, findAllUserPayment, updatePayment, deletePayments } = require('../controllers.js/payment-controller');
 const { authenticateToken } = require('../utills/auth');
 
 router 
@@ -10,6 +10,7 @@ router
 router
    .route('/dashboard')
    .post(authenticateToken, createPayment)
+   .get(authenticateToken, findAllUserPayment)
 
 router
    .route('/:paymentId')

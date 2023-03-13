@@ -3,13 +3,18 @@ const { Payment, User } = require('../schemas/index');
 const paymentController = {
 
    createPayment({ body, user }, res) {
-      Payment.create(body)
+      Payment.create({
+         userId: user.id,
+         category: body.category,
+         paymentAmount: body.paymentAmount,
+      })
       .then(({ _id }) => {
          return User.findByIdAndUpdate(
             { _id: user.id },
             { $push : {payments: _id }},
             { new: true}
          )
+         .select('-__v -password')
          .then(dbUserData => {
             if (!dbUserData) {
                res.status(404).json({ message: 'No User found with that Id '});
@@ -52,6 +57,26 @@ const paymentController = {
          console.log(err);
          res.status(500).json(err)
       })
+   },
+
+   findAllUserPayment({ user, query }, res) {
+      Payment.find({
+         userId: user.id
+      })
+      .limit(query.limit)
+      .sort({ paymentDate: -1})
+      .then(dbPaymentData => {
+         if (!dbPaymentData) {
+            res.status(404).json({ message: 'Payments not found'});
+            return
+         }
+
+         res.json(dbPaymentData)
+      })
+      .catch(err => {
+         console.log(err);
+         res.status(500).json(err)
+      }) 
    },
 
    updatePayment({ params, body }, res) {
