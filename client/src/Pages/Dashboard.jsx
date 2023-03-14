@@ -4,6 +4,7 @@ import formatMoney from '../utills/moneyFormat'
 
 import AddPayment from '../components/AddPayment';
 import DonutChart from '../components/DonutChart';
+import PastPaymentsLimited from '../components/PastPaymentsLimited';
 
 import { useState, useEffect } from 'react';
 import getUser from '../axios/getUser';
@@ -27,7 +28,7 @@ function Dashboard() {
             setBudget(budgetAmount);
             setMadePayment(false);
             setBudgetEdit(false);
-            getMontlySpending(payments)
+            getMontlySpending(payments);
          } catch (err) {
             console.log(err)
          }
@@ -119,9 +120,19 @@ function Dashboard() {
             </div>
          </section>
 
-         <section className='dash-past-payment'>
+         <section className='dash-past-payments'>
+               <div className='past-payment-titles'>
+                  <h3>Date</h3>
+                  <h3>Category</h3>
+                  <h3>Amount</h3>
+                  <h3>Delete</h3>
+               </div>
 
+               <div className='payment-list'>
+                  <PastPaymentsLimited madePayment={madePayment}/>
+               </div>
          </section>
+
       </div>
    )
 };

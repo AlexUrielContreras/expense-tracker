@@ -7,6 +7,7 @@ const paymentController = {
          userId: user.id,
          category: body.category,
          paymentAmount: body.paymentAmount,
+         paymentDate: Date.now()
       })
       .then(({ _id }) => {
          return User.findByIdAndUpdate(
