@@ -77,17 +77,17 @@ function Dashboard() {
    }
 
    return (
-      <div className='dash-container'>
-         <header className='dash-header'>
-            <h1>{username}'s Dashboard</h1>
-            <input type='button' value='Logout' onClick={() => Auth.logout()}/>
+      <div className='dashboard-container'>
+         <header className='dashboard-header'>
+            <h1 className='dashboard-title'>{username}'s Dashboard</h1>
+            <input className='logout-btn' type='button' value='Logout' onClick={() => Auth.logout()}/>
          </header>
 
-         <section className='dash-main-section'>
-            <div className='dash-stats'>
-               <div className='budget'>
+         <section className='dashboard-content'>
+            <div className='dashboard-user-stats'>
+               <div>
                   {!budgetEdit ?  
-                     <h3>Budget:
+                     <h3>Monthly Budget:
                         {budget ? <span onClick={() => setBudgetEdit(true)} className={`pointer ${budget < monthlySpending ? 'over-budget' : 'under-budget'}`}> {formatMoney(budget)}</span> 
                         : 
                         <span onClick={() => setBudgetEdit(true)} className='pointer'> Click here to set your budget</span>}
@@ -95,8 +95,9 @@ function Dashboard() {
                   :
                      <form onSubmit={handleBudgetSubmit} className='budget-form'>
                         <label htmlFor='budgetAmount'></label>
-                        <input type='number' name='budgetAmount' placeholder='Enter your Monthly Budget' id='budgetAmount'/>
+                        <input type='text' name='budgetAmount' placeholder='E.g 1000' id='budgetAmount' required/>
                         <button type='submit'>Submit</button>
+                        <button tpye='button' onClick={() => setBudgetEdit(false)}>Cancel</button>
                      </form>                      
                   }
                </div>
@@ -112,9 +113,7 @@ function Dashboard() {
                </div>
 
                <div className='dash-add-payment'>
-                  <div>
-                     <h2 className='dash-pay-title'>Add Payment</h2>
-                  </div>
+                  <h2 className='dash-pay-title'>Add Payment</h2>
                   <AddPayment setMadePayment={setMadePayment} />
                </div>
             </div>
@@ -132,7 +131,6 @@ function Dashboard() {
                   <PastPaymentsLimited madePayment={madePayment}/>
                </div>
          </section>
-
       </div>
    )
 };

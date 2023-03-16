@@ -119,23 +119,20 @@ body {
 }
 
 /*       Dashboard Styles        */
-.dash-container {
+.dashboard-container {
   max-width: 90vw;
   min-height: 100vh;
   margin: 0 auto;
 }
 
-.dash-header {
+.dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   padding: 0.5em 0;
 }
-.dash-header h1 {
-  margin: 0;
-  color: #FFE4C4;
-}
-.dash-header input[type=button] {
+
+.logout-btn {
   padding: 0;
   font-size: 1.5rem;
   font-weight: 600;
@@ -145,19 +142,24 @@ body {
   cursor: pointer;
 }
 
-.dash-main-section {
+.dashboard-title {
+  margin: 0;
+  color: #FFE4C4;
+}
+
+.dashboard-content {
   margin-top: 2rem;
 }
 
-.dash-stats {
+.dashboard-user-stats {
   display: flex;
 }
-.dash-stats div {
+.dashboard-user-stats div {
   min-width: 50%;
 }
-.dash-stats h3 {
+.dashboard-user-stats h3 {
   color: #FFE4C4;
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 2vw, 3rem);
   font-weight: 600;
   margin: 0;
 }
@@ -166,9 +168,7 @@ body {
   font-size: 1rem;
   padding: 0.5rem 1rem;
   outline: none;
-  border: 2px solid lightgrey;
-  background-color: black;
-  color: white;
+  background-color: lightgrey;
 }
 .budget-form button {
   margin-left: 2rem;
@@ -202,7 +202,7 @@ body {
 }
 
 .dash-pay-title {
-  font-size: 2.2rem;
+  font-size: clamp(1.9rem, 2.5vw, 3rem);
   margin-top: 0;
 }
 
@@ -223,7 +223,7 @@ body {
   cursor: pointer;
 }
 .payment-form button {
-  min-width: 50%;
+  min-width: 100%;
   padding: 1em 0.5em;
   margin-top: 1.5rem;
   font-size: 1rem;
@@ -231,7 +231,7 @@ body {
 }
 
 .dash-past-payments {
-  margin-top: 1rem;
+  margin: 1rem 0;
 }
 
 .past-payment-titles {
@@ -242,6 +242,7 @@ body {
 .past-payment-titles h3 {
   margin: 0.2rem 0;
   min-width: 8%;
+  font-size: clamp(1rem, 1vw, 3rem);
 }
 
 .payment-list {
@@ -252,10 +253,11 @@ body {
 .past-payments-cell {
   display: flex;
   justify-content: space-between;
-  padding: 0.9em 0 0.9em 1.5rem;
+  padding: 0.9em 1rem;
 }
 .past-payments-cell span {
-  min-width: 8%;
+  min-width: 6vw;
+  font-size: clamp(0.8rem, 0.9vw, 2rem);
 }
 
 /*          Media Queries           */
@@ -280,14 +282,14 @@ body {
   .signup-container {
     margin-top: 3rem;
   }
-  .dash-header {
+  .dashboard-header {
     flex-direction: column;
     align-items: center;
   }
-  .dash-header h1 {
+  .dashboard-header h1 {
     margin-bottom: 0.5rem;
   }
-  .dash-main-section {
+  .dashboard-content {
     margin: 2rem 0;
   }
   .dash-pay-chart {
@@ -299,6 +301,15 @@ body {
     border: unset;
     border-top: 2px solid black;
     min-width: 90%;
+  }
+  .dashboard-user-stats {
+    text-align: center;
+  }
+  .past-payment-titles {
+    padding: 0 0.3rem;
+  }
+  .past-payments-cell {
+    padding: 0.7rem 0.3rem;
   }
 }
 @media screen and (max-height: 50em) {

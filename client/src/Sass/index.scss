@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
-$main-text-color: #FFE4C4;
-$font-poppins: 'Poppins', sans-serif;
+$fc-main: #FFE4C4;
+$dd: 'Poppins', sans-serif;
 
 *, *::after, *::before {
    box-sizing: border-box
@@ -10,7 +10,7 @@ $font-poppins: 'Poppins', sans-serif;
 body {
    margin: 0;
    min-height: 100vh;
-   font-family: $font-poppins;
+   font-family: $dd;
    background-color: black;
 }
 
@@ -33,7 +33,7 @@ body {
       font-size: clamp(2rem, 3vw, 4rem);
       margin: 0 ;
       padding: 1.2em .5em 0;
-      color: $main-text-color;
+      color: $fc-main;
       line-height: 50px
    }
 }
@@ -74,7 +74,7 @@ body {
       margin-top: 1.1rem;
       font-size: 1rem;
       letter-spacing: 1px;
-      font-family: $font-poppins;
+      font-family: $dd;
       font-weight: 400;
       border: none;
       border-radius: 20px; 
@@ -107,7 +107,7 @@ body {
       border: none;
       outline: none;
       border-radius: 20px;
-      font-family: $font-poppins;
+      font-family: $dd;
    }
 }
 
@@ -124,7 +124,7 @@ body {
 }
 
 .form-cta {
-   color: $main-text-color;
+   color: $fc-main;
    text-align: center;
    margin: .5em 0 0;
    cursor: pointer;
@@ -132,39 +132,39 @@ body {
 }
 
 /*       Dashboard Styles        */
-.dash-container {
+.dashboard-container {
    max-width: 90vw;
    min-height: 100vh;
    margin: 0 auto
 }
 
-.dash-header {
+.dashboard-header {
    display: flex;
    justify-content: space-between;
    align-items: baseline;
    padding: .5em 0;
-
-   h1 {
-      margin: 0;
-      color: $main-text-color
-   }
-
-   input[type='button'] {
-      padding: 0;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: $main-text-color;
-      background-color: black;
-      border: none;
-      cursor: pointer
-   }
 }
 
-.dash-main-section {
+.logout-btn {
+   padding: 0;
+   font-size: 1.5rem;
+   font-weight: 600;
+   color: $fc-main;
+   background-color: black;
+   border: none;
+   cursor: pointer
+}
+
+.dashboard-title {
+   margin: 0;
+   color: $fc-main
+}
+
+.dashboard-content {
    margin-top: 2rem;
 }
 
-.dash-stats {
+.dashboard-user-stats {
    display: flex;
 
    div {
@@ -172,8 +172,8 @@ body {
    }
 
    h3 {
-      color: $main-text-color;
-      font-size: 2rem;
+      color: $fc-main;
+      font-size: clamp(1.5rem, 2vw ,3rem);
       font-weight: 600;
       margin: 0;
    }
@@ -184,9 +184,7 @@ body {
       font-size: 1rem;
       padding: .5rem 1rem;
       outline: none;
-      border: 2px solid lightgrey;
-      background-color: black;
-      color: white;
+      background-color: lightgrey;
    }
 
    button {
@@ -222,7 +220,7 @@ body {
 }
 
 .dash-pay-title {
-   font-size: 2.2rem;
+   font-size: clamp(1.9rem, 2.5vw, 3rem);
    margin-top: 0;
 }
 
@@ -249,7 +247,7 @@ body {
    }
 
    button {
-      min-width: 50%;
+      min-width: 100%;
       padding: 1em .5em;
       margin-top: 1.5rem;
       font-size: 1rem;
@@ -258,7 +256,7 @@ body {
 }
 
 .dash-past-payments {
-   margin-top: 1rem
+   margin: 1rem 0
 }
 
 .past-payment-titles {
@@ -268,7 +266,8 @@ body {
 
    h3 {
       margin: .2rem 0;
-      min-width: 8%
+      min-width: 8%;
+      font-size: clamp(1rem, 1vw, 3rem)
    }
 }
 
@@ -280,10 +279,11 @@ body {
 .past-payments-cell {
    display: flex;
    justify-content: space-between;
-   padding: .9em 0 .9em 1.5rem;
+   padding: .9em 1rem;
    
    span {
-      min-width: 8%
+      min-width: 6vw;
+      font-size: clamp(.8rem, .9vw, 2rem)
    }
 }
 
@@ -320,7 +320,7 @@ body {
       margin-top: 3rem
    }
 
-   .dash-header {
+   .dashboard-header {
       flex-direction: column;
       align-items: center;
 
@@ -329,7 +329,7 @@ body {
       }
    }
 
-   .dash-main-section {
+   .dashboard-content {
       margin: 2rem 0;
    }
 
@@ -343,6 +343,18 @@ body {
       border: unset;
       border-top: 2px solid black;
       min-width: 90%
+   }
+
+   .dashboard-user-stats {
+      text-align: center
+   }
+
+   .past-payment-titles {
+      padding: 0 .3rem
+   }
+
+   .past-payments-cell {
+      padding: .7rem .3rem;
    }
 }
 

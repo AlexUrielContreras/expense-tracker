@@ -1,6 +1,8 @@
 import axios from 'axios';
 import Auth from '../utills/auth';
 
+import formatMoney from '../utills/moneyFormat';
+
 import { useState, useEffect } from 'react';
 
 function PastPaymentsLimited({ madePayment }) {
@@ -21,8 +23,7 @@ function PastPaymentsLimited({ madePayment }) {
                }
             })
 
-            console.log(response)
-            setPastPayments([...response.data])
+            setPastPayments([...response.data]);
          } catch (err) {
             console.log(err)
          }
@@ -40,7 +41,7 @@ function PastPaymentsLimited({ madePayment }) {
       return <div className='past-payments-cell'>
          <span>{dateFormat(data.paymentDate)}</span>
          <span>{data.category}</span>
-         <span>{data.paymentAmount.$numberDecimal}</span>
+         <span>{formatMoney(data.paymentAmount.$numberDecimal)}</span>
          <span>trash icon</span>
       </div>
 
