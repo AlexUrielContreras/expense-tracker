@@ -1,23 +1,28 @@
 import UserCreation from './Pages/UserCreation';
 import Dashboard from './Pages/Dashboard';
 import PastPaymentFull from './components/PastPaymentFull';
+import Unauthorized from './components/Unauthorized';
+import NotFound from './components/NotFound';
 
 import Auth from './utills/auth';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { createBrowserRouter, Route, RouterProvider, createRoutesFromElements } from 'react-router-dom';
+
 
 function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements([
+      !Auth.loggedIn() ? 
+        <Route path='/' element={<UserCreation />} errorElement={<Unauthorized />} /> 
+      :
+      <Route errorElement={<NotFound />}>
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/payments' element={<PastPaymentFull />} /> 
+      </Route>
+    ])
+  )
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          {!Auth.loggedIn() ? 
-            <Route path='/' element={<UserCreation /> } />
-            :
-            <Route path='/dashboard' element={<Dashboard /> } />  
-          }
-          <Route path='/dashboard/payments' element={<PastPaymentFull />} />
-        </Routes>
-      </Router>
+      <RouterProvider router={router} />
     </div>
   );
 }

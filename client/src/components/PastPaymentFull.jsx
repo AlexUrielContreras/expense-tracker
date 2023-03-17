@@ -5,25 +5,25 @@ import { useState, useEffect } from 'react';
 
 function PastPaymentFull() {
 
-   // useEffect(() => {
-   //    async function paymentData() {
-   //       const token = Auth.getToken();
+   useEffect(() => {
+      async function paymentData() {
+         const token = Auth.getToken();
          
-   //       try {
-   //          const response = await getUser(token);
-   //          console.log(response)
+         try {
+            const response = await getUser(token);
+            console.log(response)
 
-   //       } catch(err) {
-   //          console.log(err)
-   //       }
-   //    }
+         } catch(err) {
+            console.log(err)
+         }
+      }
 
-   //    paymentData();
-   // }, []);
+      paymentData();
+   }, []);
 
    return (
-      <div>
-         
+      <div style={{ color: 'white'}}>
+         dsmkfjnds klfjdskfhdjk
       </div>
    )
 };

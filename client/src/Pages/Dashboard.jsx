@@ -6,6 +6,7 @@ import AddPayment from '../components/AddPayment';
 import DonutChart from '../components/DonutChart';
 import PastPaymentsLimited from '../components/PastPaymentsLimited';
 
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import getUser from '../axios/getUser';
 
@@ -132,9 +133,7 @@ function Dashboard() {
                </div>
          </section>
          <div className='cta-past-payments'>
-            <span onClick={() => {
-               window.location.assign('/dashboard/payments')
-            }}>View all payments</span>
+            <Link to='/payments'>View all payments</Link>
          </div>
       </div>
    )
