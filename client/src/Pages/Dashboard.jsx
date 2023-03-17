@@ -131,6 +131,11 @@ function Dashboard() {
                   <PastPaymentsLimited madePayment={madePayment}/>
                </div>
          </section>
+         <div className='cta-past-payments'>
+            <span onClick={() => {
+               window.location.assign('/dashboard/payments')
+            }}>View all payments</span>
+         </div>
       </div>
    )
 };

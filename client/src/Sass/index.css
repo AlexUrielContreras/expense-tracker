@@ -231,7 +231,7 @@ body {
 }
 
 .dash-past-payments {
-  margin: 1rem 0;
+  margin-top: 1rem;
 }
 
 .past-payment-titles {
@@ -258,6 +258,16 @@ body {
 .past-payments-cell span {
   min-width: 6vw;
   font-size: clamp(0.8rem, 0.9vw, 2rem);
+}
+
+.cta-past-payments {
+  color: white;
+  text-align: end;
+  cursor: pointer;
+}
+
+.cta-past-payments:hover {
+  color: #FFE4C4;
 }
 
 /*          Media Queries           */
