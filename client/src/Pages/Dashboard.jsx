@@ -4,6 +4,7 @@ import formatMoney from '../utills/moneyFormat'
 
 import AddPayment from '../components/AddPayment';
 import DonutChart from '../components/DonutChart';
+import PaymentListHeader from '../components/PaymentListHeader';
 import PastPaymentsLimited from '../components/PastPaymentsLimited';
 
 import { Link } from 'react-router-dom';
@@ -121,13 +122,7 @@ function Dashboard() {
          </section>
 
          <section className='dash-past-payments'>
-               <div className='past-payment-titles'>
-                  <h3>Date</h3>
-                  <h3>Category</h3>
-                  <h3>Amount</h3>
-                  <h3>Delete</h3>
-               </div>
-
+               <PaymentListHeader />
                <div className='payment-list'>
                   <PastPaymentsLimited madePayment={madePayment}/>
                </div>

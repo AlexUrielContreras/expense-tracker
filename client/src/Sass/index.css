@@ -246,14 +246,14 @@ body {
 }
 
 .payment-list {
-  background-color: lightgrey;
   margin-top: 0.2rem;
 }
 
 .past-payments-cell {
   display: flex;
   justify-content: space-between;
-  padding: 0.9em 1rem;
+  padding: 0.9em 0;
+  background-color: lightgrey;
 }
 .past-payments-cell span {
   min-width: 6vw;
@@ -268,6 +268,11 @@ body {
 
 .cta-past-payments:hover {
   color: #FFE4C4;
+}
+
+.full-payment-container {
+  max-width: 80vw;
+  margin: 0 auto;
 }
 
 /*          Media Queries           */

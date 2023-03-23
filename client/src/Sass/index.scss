@@ -272,14 +272,14 @@ body {
 }
 
 .payment-list {
-   background-color: lightgrey;
    margin-top: .2rem
 }
 
 .past-payments-cell {
    display: flex;
    justify-content: space-between;
-   padding: .9em 1rem;
+   padding: .9em 0;
+   background-color: lightgrey;
    
    span {
       min-width: 6vw;
@@ -297,6 +297,11 @@ body {
    color: $fc-main
 }
 
+
+.full-payment-container {
+   max-width: 80vw;
+   margin: 0 auto
+}
 
 
 /*          Media Queries           */
