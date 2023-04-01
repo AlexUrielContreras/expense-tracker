@@ -27,6 +27,19 @@ function PastPaymentFull() {
       paymentData();
    }, []);
 
+   function getDate(date) {
+      if (typeof date !== 'string') {
+         throw new Error('Invalid date format. Expected a string.');
+      }
+      
+      const dataParts = date.split('T');
+      if (dataParts.length !== 2 ) {
+         throw new Error('Invalid date format. Expected a string in the format of "YYYY-MM-DD:HH:MM:SS".')
+      }
+
+      return dataParts[0];
+   }
+
    return (
       <div className='full-payment-container'>
          <PaymentListHeader />
@@ -34,7 +47,7 @@ function PastPaymentFull() {
             const { category, paymentAmount, paymentDate, _id} = element;
 
             return <div className='past-payments-cell' key={_id}>
-               <span>{paymentDate}</span>
+               <span>{getDate(paymentDate)}</span>
                <span>{category}</span>
                <span>{paymentAmount.$numberDecimal}</span>
                <span>Delete Icon</span>
