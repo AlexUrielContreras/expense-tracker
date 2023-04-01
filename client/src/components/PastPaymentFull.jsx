@@ -15,12 +15,10 @@ function PastPaymentFull() {
          
          try {
             const response = await getPaymentData(token);
-            console.log(response)
-
-            setPayments([...response.data])
-
+            setPayments([...response.data]);
+   
          } catch(err) {
-            console.log(err)
+            throw err
          }
       }
 

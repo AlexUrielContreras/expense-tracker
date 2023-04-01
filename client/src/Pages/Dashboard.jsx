@@ -99,7 +99,7 @@ function Dashboard() {
                         <label htmlFor='budgetAmount'></label>
                         <input type='text' name='budgetAmount' placeholder='E.g 1000' id='budgetAmount' required/>
                         <button type='submit'>Submit</button>
-                        <button tpye='button' onClick={() => setBudgetEdit(false)}>Cancel</button>
+                        <button type='button' onClick={() => setBudgetEdit(false)}>Cancel</button>
                      </form>                      
                   }
                </div>
