@@ -133,7 +133,7 @@ body {
 
 /*       Dashboard Styles        */
 .dashboard-container {
-   max-width: 90vw;
+   max-width: 80vw;
    min-height: 100vh;
    margin: 0 auto
 }
@@ -161,7 +161,7 @@ body {
 }
 
 .dashboard-content {
-   margin-top: 2rem;
+   margin-top: 3rem;
 }
 
 .dashboard-user-stats {
@@ -173,8 +173,8 @@ body {
 
    h3 {
       color: $fc-main;
-      font-size: clamp(1.5rem, 2vw ,3rem);
-      font-weight: 600;
+      font-size: clamp(1.5rem, 1.6vw ,3rem);
+      font-weight: 500;
       margin: 0;
    }
 }
@@ -220,8 +220,9 @@ body {
 }
 
 .dash-pay-title {
-   font-size: clamp(1.9rem, 2.5vw, 3rem);
+   font-size: clamp(1.9rem, 2vw, 3rem);
    margin-top: 0;
+   font-weight: 500
 }
 
 .payment-form{
@@ -233,12 +234,12 @@ body {
    }
 
    label {
-      font-size: 1.2rem;
+      font-size: 1rem;
       margin-bottom: .3rem
    }
 
    select, input {
-      padding: .8em .5em;
+      padding: .7em .4em;
       font-size: 1rem
    }
 
@@ -248,7 +249,7 @@ body {
 
    button {
       min-width: 100%;
-      padding: 1em .5em;
+      padding: .8em .5em;
       margin-top: 1.5rem;
       font-size: 1rem;
       cursor: pointer
@@ -256,7 +257,7 @@ body {
 }
 
 .dash-past-payments {
-   margin-top: 1rem
+   margin-top: 2rem
 }
 
 .past-payment-titles {
@@ -267,12 +268,13 @@ body {
    h3 {
       margin: .2rem 0;
       min-width: 8%;
-      font-size: clamp(1rem, 1vw, 3rem)
+      font-size: clamp(1rem, .9vw, 3rem);
+      font-weight: 500;
    }
 }
 
 .payment-list {
-   margin-top: .2rem
+   margin-top: .5rem
 }
 
 .past-payments-cell {
@@ -288,7 +290,7 @@ body {
 
    img { 
       min-width: 1vw;
-      padding-right: 4em
+      padding-right: 3em
    }
 }
 

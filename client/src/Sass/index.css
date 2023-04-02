@@ -120,7 +120,7 @@ body {
 
 /*       Dashboard Styles        */
 .dashboard-container {
-  max-width: 90vw;
+  max-width: 80vw;
   min-height: 100vh;
   margin: 0 auto;
 }
@@ -148,7 +148,7 @@ body {
 }
 
 .dashboard-content {
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .dashboard-user-stats {
@@ -159,8 +159,8 @@ body {
 }
 .dashboard-user-stats h3 {
   color: #FFE4C4;
-  font-size: clamp(1.5rem, 2vw, 3rem);
-  font-weight: 600;
+  font-size: clamp(1.5rem, 1.6vw, 3rem);
+  font-weight: 500;
   margin: 0;
 }
 
@@ -202,8 +202,9 @@ body {
 }
 
 .dash-pay-title {
-  font-size: clamp(1.9rem, 2.5vw, 3rem);
+  font-size: clamp(1.9rem, 2vw, 3rem);
   margin-top: 0;
+  font-weight: 500;
 }
 
 .payment-form div {
@@ -212,11 +213,11 @@ body {
   margin-bottom: 1rem;
 }
 .payment-form label {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 0.3rem;
 }
 .payment-form select, .payment-form input {
-  padding: 0.8em 0.5em;
+  padding: 0.7em 0.4em;
   font-size: 1rem;
 }
 .payment-form select {
@@ -224,14 +225,14 @@ body {
 }
 .payment-form button {
   min-width: 100%;
-  padding: 1em 0.5em;
+  padding: 0.8em 0.5em;
   margin-top: 1.5rem;
   font-size: 1rem;
   cursor: pointer;
 }
 
 .dash-past-payments {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .past-payment-titles {
@@ -242,11 +243,12 @@ body {
 .past-payment-titles h3 {
   margin: 0.2rem 0;
   min-width: 8%;
-  font-size: clamp(1rem, 1vw, 3rem);
+  font-size: clamp(1rem, 0.9vw, 3rem);
+  font-weight: 500;
 }
 
 .payment-list {
-  margin-top: 0.2rem;
+  margin-top: 0.5rem;
 }
 
 .past-payments-cell {
@@ -261,7 +263,7 @@ body {
 }
 .past-payments-cell img {
   min-width: 1vw;
-  padding-right: 4em;
+  padding-right: 3em;
 }
 
 .cta-past-payments {

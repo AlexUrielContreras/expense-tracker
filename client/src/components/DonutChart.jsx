@@ -63,7 +63,7 @@ function DonutChart({ madePayment }) {
 
    const options = {
       pieHole: 0.3,
-      height: '400',
+      height: '370',
       width: '370',
       chartArea: {width:'98%', height: '100%'},
       legend: 'none', 
