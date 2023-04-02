@@ -128,7 +128,7 @@ function Dashboard() {
                </div>
          </section>
          <div className='cta-past-payments'>
-            <Link to='/payments'>View all payments</Link>
+            <Link to='/u/payments'>View all payments</Link>
          </div>
       </div>
    )

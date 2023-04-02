@@ -16,7 +16,7 @@ function App() {
       :
       <Route errorElement={<NotFound />}>
         <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/payments' element={<PastPaymentFull />} /> 
+        <Route path='/u/payments' element={<PastPaymentFull />} /> 
       </Route>
     ])
   )

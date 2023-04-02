@@ -83,7 +83,6 @@ body {
    button[type='submit']:hover {
       font-weight: 600;
       background-color: grey;
-      cursor: pointer
    }
 }
 
@@ -127,7 +126,6 @@ body {
    color: $fc-main;
    text-align: center;
    margin: .5em 0 0;
-   cursor: pointer;
    font-size: clamp(.9rem, .9vw, 2rem);
 }
 
@@ -152,7 +150,6 @@ body {
    color: $fc-main;
    background-color: black;
    border: none;
-   cursor: pointer
 }
 
 .dashboard-title {
@@ -194,7 +191,6 @@ body {
       color: white;
       background-color: black;
       font-size: 1.5rem;
-      cursor: pointer;
    }
 }
 
@@ -243,32 +239,29 @@ body {
       font-size: 1rem
    }
 
-   select {
-      cursor: pointer
-   }
 
    button {
       min-width: 100%;
       padding: .8em .5em;
       margin-top: 1.5rem;
       font-size: 1rem;
-      cursor: pointer
    }
 }
 
 .dash-past-payments {
-   margin-top: 2rem
+   margin-top: 1.7rem
 }
 
 .past-payment-titles {
    display: flex;
    justify-content: space-between;
    background-color: lightgrey;
+   text-align: center;
 
    h3 {
-      margin: .2rem 0;
+      margin: .5rem 0;
       min-width: 8%;
-      font-size: clamp(1rem, .9vw, 3rem);
+      font-size: clamp(.9rem, .9vw, 3rem);
       font-weight: 500;
    }
 }
@@ -285,25 +278,28 @@ body {
    
    span {
       min-width: 6vw;
-      font-size: clamp(.8rem, .9vw, 2rem)
+      font-size: clamp(.8rem, .85vw, 2rem)
    }
 
    img { 
       min-width: 1vw;
-      padding-right: 3em
+      padding-right: 2em
    }
 }
 
 .cta-past-payments {
    color: white;
    text-align: end;
-   cursor: pointer
-}
 
-.cta-past-payments:hover {
-   color: $fc-main
-}
+   a {
+      color: white;
+      text-decoration: none
+   }
 
+   a:hover {
+      color: $fc-main
+   }
+}
 
 .full-payment-container {
    max-width: 80vw;
@@ -376,7 +372,11 @@ body {
    }
 
    .past-payments-cell {
-      padding: .7rem .3rem;
+      padding: .7rem .2em;
+
+      img {
+         padding-right: 0
+      }
    }
 }
 

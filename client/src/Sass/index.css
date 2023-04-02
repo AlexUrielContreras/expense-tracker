@@ -73,7 +73,6 @@ body {
 .form-container button[type=submit]:hover {
   font-weight: 600;
   background-color: grey;
-  cursor: pointer;
 }
 
 .form-inputs-container {
@@ -114,7 +113,6 @@ body {
   color: #FFE4C4;
   text-align: center;
   margin: 0.5em 0 0;
-  cursor: pointer;
   font-size: clamp(0.9rem, 0.9vw, 2rem);
 }
 
@@ -139,7 +137,6 @@ body {
   color: #FFE4C4;
   background-color: black;
   border: none;
-  cursor: pointer;
 }
 
 .dashboard-title {
@@ -177,7 +174,6 @@ body {
   color: white;
   background-color: black;
   font-size: 1.5rem;
-  cursor: pointer;
 }
 
 .under-budget {
@@ -220,30 +216,27 @@ body {
   padding: 0.7em 0.4em;
   font-size: 1rem;
 }
-.payment-form select {
-  cursor: pointer;
-}
 .payment-form button {
   min-width: 100%;
   padding: 0.8em 0.5em;
   margin-top: 1.5rem;
   font-size: 1rem;
-  cursor: pointer;
 }
 
 .dash-past-payments {
-  margin-top: 2rem;
+  margin-top: 1.7rem;
 }
 
 .past-payment-titles {
   display: flex;
   justify-content: space-between;
   background-color: lightgrey;
+  text-align: center;
 }
 .past-payment-titles h3 {
-  margin: 0.2rem 0;
+  margin: 0.5rem 0;
   min-width: 8%;
-  font-size: clamp(1rem, 0.9vw, 3rem);
+  font-size: clamp(0.9rem, 0.9vw, 3rem);
   font-weight: 500;
 }
 
@@ -259,20 +252,22 @@ body {
 }
 .past-payments-cell span {
   min-width: 6vw;
-  font-size: clamp(0.8rem, 0.9vw, 2rem);
+  font-size: clamp(0.8rem, 0.85vw, 2rem);
 }
 .past-payments-cell img {
   min-width: 1vw;
-  padding-right: 3em;
+  padding-right: 2em;
 }
 
 .cta-past-payments {
   color: white;
   text-align: end;
-  cursor: pointer;
 }
-
-.cta-past-payments:hover {
+.cta-past-payments a {
+  color: white;
+  text-decoration: none;
+}
+.cta-past-payments a:hover {
   color: #FFE4C4;
 }
 
@@ -330,7 +325,10 @@ body {
     padding: 0 0.3rem;
   }
   .past-payments-cell {
-    padding: 0.7rem 0.3rem;
+    padding: 0.7rem 0.2em;
+  }
+  .past-payments-cell img {
+    padding-right: 0;
   }
 }
 @media screen and (max-height: 50em) {

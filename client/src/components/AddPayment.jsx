@@ -49,7 +49,7 @@ function AddPayment({ setMadePayment }) {
             <form onSubmit={handlePaySubmit} className='payment-form'>
                <div className='category-dd'>
                   <label htmlFor='category'>Category</label>
-                  <select name='category' id='category' value={dropDownDefault} onChange={(e) => setDropDownDefault(e.target.value)} required>
+                  <select name='category' id='category' value={dropDownDefault} onChange={(e) => setDropDownDefault(e.target.value)} required className='pointer'>
                      <option value='' disabled>Please select an option</option>
                      <option value='Rent'>Rent</option>
                      <option value='Utility Bills'>Utility Bills</option>
@@ -66,7 +66,7 @@ function AddPayment({ setMadePayment }) {
                   <input type='text'placeholder='E.g $10000' name='pay-amount' value={paymentInput} onChange={handlePaymentChange} autoComplete='off' id='pay-amount' required/>
                </div>
 
-               <button type='submit'>Add Payment</button>
+               <button type='submit' className='pointer'>Add Payment</button>
             </form>  
          </div>
    )
