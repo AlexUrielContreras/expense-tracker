@@ -124,7 +124,7 @@ function Dashboard() {
          <section className='dash-past-payments'>
                <PaymentListHeader />
                <div className='payment-list'>
-                  <PastPaymentsLimited madePayment={madePayment}/>
+                  <PastPaymentsLimited setMadePayment={setMadePayment} madePayment={madePayment}/>
                </div>
          </section>
          <div className='cta-past-payments'>

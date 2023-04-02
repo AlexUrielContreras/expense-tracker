@@ -252,12 +252,16 @@ body {
 .past-payments-cell {
   display: flex;
   justify-content: space-between;
-  padding: 0.9em 0;
+  padding: 0.8em 1em;
   background-color: lightgrey;
 }
 .past-payments-cell span {
   min-width: 6vw;
   font-size: clamp(0.8rem, 0.9vw, 2rem);
+}
+.past-payments-cell img {
+  min-width: 1vw;
+  padding-right: 4em;
 }
 
 .cta-past-payments {

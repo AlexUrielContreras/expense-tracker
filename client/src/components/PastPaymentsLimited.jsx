@@ -1,11 +1,13 @@
 import axios from 'axios';
 import Auth from '../utills/auth';
+import trashIcon from '../assets/trash-icon.png'
 
 import formatMoney from '../utills/moneyFormat';
+import handleDelete from '../axios/deleteItem';
 
 import { useState, useEffect } from 'react';
 
-function PastPaymentsLimited({ madePayment }) {
+function PastPaymentsLimited({ setMadePayment, madePayment }) {
    const [ pastPayments, setPastPayments ] = useState([]);
 
    useEffect(() => {
@@ -30,7 +32,7 @@ function PastPaymentsLimited({ madePayment }) {
       }
 
       getPaymentData()
-   }, [madePayment])
+   }, [madePayment]);
 
    function dateFormat(date) {
       return date.split('T')[0]
@@ -38,11 +40,17 @@ function PastPaymentsLimited({ madePayment }) {
 
    return (
      pastPayments.map(data => {
-      return <div className='past-payments-cell'>
+      return <div className='past-payments-cell' >
          <span>{dateFormat(data.paymentDate)}</span>
          <span>{data.category}</span>
          <span>{formatMoney(data.paymentAmount.$numberDecimal)}</span>
-         <span>trash icon</span>
+         <img onClick={() => {
+               handleDelete(data._id)
+               setMadePayment(true)
+            }} 
+            className='pointer'
+            src={trashIcon} 
+            alt='trash icon to delete payment'/>
       </div>
 
      })

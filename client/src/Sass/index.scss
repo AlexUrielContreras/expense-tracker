@@ -278,12 +278,17 @@ body {
 .past-payments-cell {
    display: flex;
    justify-content: space-between;
-   padding: .9em 0;
+   padding: .8em 1em;
    background-color: lightgrey;
    
    span {
       min-width: 6vw;
       font-size: clamp(.8rem, .9vw, 2rem)
+   }
+
+   img { 
+      min-width: 1vw;
+      padding-right: 4em
    }
 }
 
