@@ -11,10 +11,10 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import getUser from '../axios/getUser';
 
-function Dashboard() {
+function Dashboard({ madePayment, setMadePayment }) {
+   
    const [ username, setUsername ] = useState('');
    const [ budget, setBudget ] = useState();
-   const [ madePayment, setMadePayment ] = useState(false);
    const [ budgetEdit, setBudgetEdit ] = useState(false);
    const [ monthlySpending, setMontlySpending ] = useState(0);
 
@@ -127,6 +127,7 @@ function Dashboard() {
                   <PastPaymentsLimited setMadePayment={setMadePayment} madePayment={madePayment}/>
                </div>
          </section>
+
          <div className='cta-past-payments'>
             <Link to='/u/payments'>View all payments</Link>
          </div>
