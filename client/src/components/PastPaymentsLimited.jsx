@@ -38,22 +38,25 @@ function PastPaymentsLimited({ setMadePayment, madePayment }) {
       return date.split('T')[0]
    }
 
-   return (
-     pastPayments.map(data => {
-      return <div className='past-payments-cell' >
-         <span>{dateFormat(data.paymentDate)}</span>
-         <span>{data.category}</span>
-         <span>{formatMoney(data.paymentAmount.$numberDecimal)}</span>
-         <img onClick={() => {
-               handleDelete(data._id)
-               setMadePayment(true)
-            }} 
-            className='pointer'
-            src={trashIcon} 
-            alt='trash icon to delete payment'/>
-      </div>
+   console.log(pastPayments)
 
-     })
+   return (
+      pastPayments.length === 0 ? <div style={{ color: 'white'}}>Any new payments will be shown here</div> : 
+      
+      pastPayments.map(data => {
+       return <div className='past-payments-cell' >
+          <span>{dateFormat(data.paymentDate)}</span>
+          <span>{data.category}</span>
+          <span>{formatMoney(data.paymentAmount.$numberDecimal)}</span>
+          <img onClick={() => {
+                handleDelete(data._id)
+                setMadePayment(true)
+             }} 
+             className='pointer'
+             src={trashIcon} 
+             alt='trash icon to delete payment'/>
+       </div>
+      })
    )
 };
 

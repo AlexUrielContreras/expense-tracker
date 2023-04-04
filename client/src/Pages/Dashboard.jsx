@@ -82,7 +82,7 @@ function Dashboard() {
       <div className='dashboard-container'>
          <header className='dashboard-header'>
             <h1 className='dashboard-title'>{username}'s Dashboard</h1>
-            <input className='logout-btn' type='button' value='Logout' onClick={() => Auth.logout()}/>
+            <input className='logout-btn pointer' type='button' value='Logout' onClick={() => Auth.logout()}/>
          </header>
 
          <section className='dashboard-content'>
