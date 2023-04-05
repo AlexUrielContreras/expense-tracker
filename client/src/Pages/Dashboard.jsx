@@ -1,11 +1,11 @@
 import Auth from '../utills/auth';
 import axios from 'axios';
-import formatMoney from '../utills/moneyFormat'
+import formatMoney from '../utills/formatMoney'
 
 import AddPayment from '../components/AddPayment';
 import DonutChart from '../components/DonutChart';
-import PaymentListHeader from '../components/PaymentListHeader';
-import PastPaymentsLimited from '../components/PastPaymentsLimited';
+import PaymentListHeader from '../components/PaymentListTitles';
+import PaymentList from '../components/PaymentList';
 
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -124,7 +124,7 @@ function Dashboard({ madePayment, setMadePayment }) {
          <section className='dash-past-payments'>
                <PaymentListHeader />
                <div className='payment-list'>
-                  <PastPaymentsLimited setMadePayment={setMadePayment} madePayment={madePayment}/>
+                  <PaymentList limit={5} setMadePayment={setMadePayment} madePayment={madePayment}/>
                </div>
          </section>
 

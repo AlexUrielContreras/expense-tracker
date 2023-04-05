@@ -1,6 +1,6 @@
 import UserCreation from './Pages/UserCreation';
 import Dashboard from './Pages/Dashboard';
-import PastPaymentFull from './components/PastPaymentFull';
+import PastPaymentFull from './Pages/PastPaymentFull';
 import Unauthorized from './components/Unauthorized';
 import NotFound from './components/NotFound';
 
