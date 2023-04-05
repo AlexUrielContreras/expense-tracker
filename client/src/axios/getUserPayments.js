@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export default async function getPaymentData(token) {
+export default async function getPaymentData(token, limit = 0) {
 
    try {
       const response = await axios({
          method: 'get',
-         url: '/api/payments/dashboard',
+         url: `/api/payments/dashboard?limit=${limit}`,
          headers: {
             'Content-Type' : 'application/json',
             'Authorization' : token

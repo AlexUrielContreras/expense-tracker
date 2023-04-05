@@ -1,11 +1,11 @@
 import getPaymentData from '../axios/getUserPayments';
 import Auth from '../utills/auth';
+import trashIcon from '../assets/trash-icon.png';
+import deleteItem from '../axios/deleteItem';
 
 import PaymentListHeader from '../components/PaymentListHeader';
-import trashIcon from '../assets/trash-icon.png';
 
 import { useState, useEffect } from 'react';
-import deleteItem from '../axios/deleteItem';
 
 function PastPaymentFull({ madePayment, setMadePayment }) {
    const [ payments, setPayments ] = useState([]);
@@ -45,8 +45,6 @@ function PastPaymentFull({ madePayment, setMadePayment }) {
          <PaymentListHeader />
          {payments.map(element => {
             const { category, paymentAmount, paymentDate, _id} = element;
-
-            console.log(category, paymentAmount, paymentDate, _id)
 
             return <div className='past-payments-cell' key={_id}>
                <span>{getDate(paymentDate)}</span>

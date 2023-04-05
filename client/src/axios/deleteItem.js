@@ -2,11 +2,14 @@ import axios from 'axios';
 import auth from '../utills/auth';
 
 export default async function handleDeleteItem(paymentId) {
-   console.log(paymentId)
-   const token = auth.getToken();
+   let token = auth.getToken();
+
+   if (!token) {
+      throw new Error('Authentication token is missing. Please login again.');
+   }
 
    try {
-      await axios({
+      return await axios({
          method: 'delete',
          url: `/api/payments/${paymentId}`,
          headers: {
@@ -15,6 +18,7 @@ export default async function handleDeleteItem(paymentId) {
          }
       })
    } catch (error) {
-      throw new Error(error)
+      console.error(`Failed to delete payment with ID ${paymentId}: ${error.message}`);
+      throw new Error('Failed to delete payment. Please try again later.');
    }
 }

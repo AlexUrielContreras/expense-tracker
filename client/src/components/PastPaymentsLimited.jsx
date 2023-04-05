@@ -1,9 +1,9 @@
-import axios from 'axios';
 import Auth from '../utills/auth';
 import trashIcon from '../assets/trash-icon.png'
 
 import formatMoney from '../utills/moneyFormat';
 import handleDelete from '../axios/deleteItem';
+import getUserPayments from '../axios/getUserPayments'
 
 import { useState, useEffect } from 'react';
 
@@ -16,14 +16,7 @@ function PastPaymentsLimited({ setMadePayment, madePayment }) {
       async function getPaymentData() {
 
          try {
-            const response = await axios({
-               method: 'get',
-               url: 'api/payments/dashboard?limit=5',
-               headers: {
-                  'Content-Type' : 'application/json',
-                  'Authorization' : token
-               }
-            })
+            const response = await getUserPayments(token, 5)
 
             setPastPayments([...response.data]);
          } catch (err) {
@@ -38,13 +31,11 @@ function PastPaymentsLimited({ setMadePayment, madePayment }) {
       return date.split('T')[0]
    }
 
-   console.log(pastPayments)
-
    return (
       pastPayments.length === 0 ? <div style={{ color: 'white'}}>Any new payments will be shown here</div> : 
       
       pastPayments.map(data => {
-       return <div className='past-payments-cell' >
+       return <div className='past-payments-cell' key={data._id} >
           <span>{dateFormat(data.paymentDate)}</span>
           <span>{data.category}</span>
           <span>{formatMoney(data.paymentAmount.$numberDecimal)}</span>

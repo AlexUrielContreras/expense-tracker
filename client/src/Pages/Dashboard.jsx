@@ -32,7 +32,7 @@ function Dashboard({ madePayment, setMadePayment }) {
             setBudgetEdit(false);
             getMontlySpending(payments);
          } catch (err) {
-            console.log(err)
+            throw new Error(err)
          }
       }
 
