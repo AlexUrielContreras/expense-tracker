@@ -61,7 +61,7 @@ function Signup() {
             <input type='password' name='password' id='password' onChange={handleFormData} minLength='6' required/>
          </div>
 
-         <button type='submit'>Sign up</button>
+         <button type='submit' className='pointer'>Sign up</button>
       </form>
    )
 };

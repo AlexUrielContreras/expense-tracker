@@ -56,7 +56,7 @@ function Login() {
             </div>
          }
 
-         <button type='submit'>Login</button>
+         <button type='submit' className='pointer'>Login</button>
       </form>
    )
 };
