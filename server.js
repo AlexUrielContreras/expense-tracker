@@ -1,14 +1,20 @@
 const express = require('express');
 const mongoDB = require('./config/connection');
 const routes = require('./routes/index');
+const path = require('path')
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "client", "build")))
 
-app.use(routes)
+app.use(routes);
+
+app.get("*", (req, res) => {
+   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 mongoDB.once('open', () => {
    app.listen(PORT , () => {
