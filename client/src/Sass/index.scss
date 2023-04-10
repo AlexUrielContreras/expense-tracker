@@ -30,11 +30,11 @@ body {
    text-align: end;
 
    h1 {
-      font-size: clamp(2rem, 3vw, 4rem);
+      font-size: clamp(2rem, 2.6vw, 4rem);
       margin: 0 ;
       padding: 1.2em .5em 0;
       color: $fc-main;
-      line-height: 50px
+      line-height: 36px
    }
 }
 

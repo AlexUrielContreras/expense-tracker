@@ -20,7 +20,7 @@ function UserCreation() {
                   <Login />
                </div>
 
-               <p className='form-cta' onClick={() => setIsLogin(false)}> Dont have an account yet -- Sign up here </p>
+               <p className='form-cta pointer' onClick={() => setIsLogin(false)}> Dont have an account yet -- Sign up here </p>
             </section>
          :
             <section className='form-section'>
@@ -31,7 +31,7 @@ function UserCreation() {
                   <Signup />
                </div>
 
-               <p className='form-cta' onClick={() => setIsLogin(true)}>Already have an account -- Login here</p>
+               <p className='form-cta pointer' onClick={() => setIsLogin(true)}>Already have an account -- Login here</p>
             </section>
          }
       </div>
