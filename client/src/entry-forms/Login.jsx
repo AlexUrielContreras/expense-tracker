@@ -33,7 +33,7 @@ function Login() {
             
          } catch (err) {
             console.log(err)
-            setErrorMessage('Incorrect Credentials')
+            setErrorMessage(`${err.response.data.message}`)
          }
       }
    };
