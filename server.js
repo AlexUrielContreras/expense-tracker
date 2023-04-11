@@ -9,12 +9,12 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "client", "build")));
+app.use(routes);
 
-app.get('/', function (req, res) {
-   res.sendFile(path.join(__dirname, './client/build', 'index'))
+app.get('/*', function (req, res) {
+   res.sendFile(path.join(__dirname, './client/build', 'index.html'))
 });
 
-app.use(routes);
 
 mongoDB.once('open', () => {
    app.listen(PORT , () => {
